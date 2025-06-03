@@ -3,9 +3,37 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const HeroSection = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleEmailSubmit = () => {
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Mohon masukkan email Anda",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Store email in localStorage for the registration form
+    localStorage.setItem("registrationEmail", email);
+    
+    toast({
+      title: "Success",
+      description: "Email berhasil disimpan. Anda akan diarahkan ke halaman pendaftaran.",
+    });
+
+    // Navigate to registration page
+    setTimeout(() => {
+      navigate("/daftar");
+    }, 1000);
+  };
 
   return (
     <section className="py-16 text-center text-white">
@@ -24,14 +52,16 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-8">
           <div className="relative flex-1">
             <Input
-              type="text"
+              type="email"
               placeholder="Masukkan email Anda"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="pl-4 pr-12 py-3 rounded-lg border-0 text-gray-800"
+              onKeyPress={(e) => e.key === 'Enter' && handleEmailSubmit()}
             />
             <Button
               size="sm"
+              onClick={handleEmailSubmit}
               className="absolute right-1 top-1 bottom-1 bg-blue-600 hover:bg-blue-700 px-3"
             >
               <Search className="h-4 w-4" />

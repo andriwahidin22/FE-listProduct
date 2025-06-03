@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const RequirementsSection = () => {
   const requirements = [
@@ -15,9 +16,11 @@ const RequirementsSection = () => {
     <section className="mb-12">
       <div className="flex justify-between items-start mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Syarat Mendaftar</h2>
-        <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-          Daftar Sekarang
-        </Button>
+        <Link to="/daftar">
+          <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+            Daftar Sekarang
+          </Button>
+        </Link>
       </div>
 
       <div className="space-y-4">

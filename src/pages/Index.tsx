@@ -1,5 +1,5 @@
 
-import Header from "../components/Header";
+import Layout from "../components/Layout";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
 import RequirementsSection from "../components/RequirementsSection";
@@ -8,8 +8,7 @@ import Sidebar from "../components/Sidebar";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
-      <Header />
+    <Layout showHero={true}>
       <div className="flex">
         <main className="flex-1 max-w-4xl mx-auto px-4">
           <HeroSection />
@@ -23,7 +22,7 @@ const Index = () => {
           <Sidebar />
         </aside>
       </div>
-    </div>
+    </Layout>
   );
 };
 
