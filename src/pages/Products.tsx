@@ -90,9 +90,9 @@ const Products = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen text-white">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+        <div className="bg-white/10 backdrop-blur-sm text-white py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Produk Keamanan Siber Terlengkap
@@ -112,7 +112,10 @@ const Products = () => {
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category)}
-                className={selectedCategory === category ? "bg-blue-600 hover:bg-blue-700" : ""}
+                className={selectedCategory === category 
+                  ? "bg-orange-500 hover:bg-orange-600 text-white" 
+                  : "bg-white/10 border-white/20 text-white hover:bg-white/20"
+                }
               >
                 {category}
               </Button>
@@ -124,38 +127,38 @@ const Products = () => {
             {filteredProducts.map((product) => {
               const IconComponent = product.icon;
               return (
-                <Card key={product.id} className="hover:shadow-lg transition-shadow duration-300 group">
+                <Card key={product.id} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 group text-white">
                   <CardHeader className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                      <IconComponent className="h-8 w-8 text-blue-600" />
+                    <div className="w-16 h-16 mx-auto mb-4 bg-orange-500/20 rounded-full flex items-center justify-center group-hover:bg-orange-500/30 transition-colors">
+                      <IconComponent className="h-8 w-8 text-orange-400" />
                     </div>
-                    <CardTitle className="text-lg">{product.name}</CardTitle>
-                    <CardDescription className="text-sm">
+                    <CardTitle className="text-lg text-white">{product.name}</CardTitle>
+                    <CardDescription className="text-sm text-blue-100">
                       {product.description}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="mb-4">
-                      <div className="text-2xl font-bold text-blue-600 mb-2">{product.price}</div>
-                      <div className="inline-block px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                      <div className="text-2xl font-bold text-orange-400 mb-2">{product.price}</div>
+                      <div className="inline-block px-2 py-1 bg-white/10 text-blue-100 text-xs rounded-full">
                         {product.category}
                       </div>
                     </div>
                     <ul className="space-y-2 mb-6">
                       {product.features.map((feature, index) => (
-                        <li key={index} className="flex items-center text-sm text-gray-600">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                        <li key={index} className="flex items-center text-sm text-blue-100">
+                          <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
                           {feature}
                         </li>
                       ))}
                     </ul>
                     <div className="space-y-2">
                       <Link to="/download">
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
                           Download Sekarang
                         </Button>
                       </Link>
-                      <Button variant="outline" className="w-full">
+                      <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
                         Pelajari Lebih Lanjut
                       </Button>
                     </div>
@@ -166,19 +169,19 @@ const Products = () => {
           </div>
 
           {/* CTA Section */}
-          <div className="mt-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl p-8 text-center text-white">
+          <div className="mt-16 bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center text-white border border-white/20">
             <h2 className="text-3xl font-bold mb-4">Butuh Solusi Khusus?</h2>
             <p className="text-lg opacity-90 mb-6">
               Tim ahli kami siap membantu Anda menemukan solusi keamanan yang tepat untuk kebutuhan spesifik Anda
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
-                <Button className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-3">
+                <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3">
                   Konsultasi Gratis
                 </Button>
               </Link>
               <Link to="/support">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-3">
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-3">
                   Hubungi Support
                 </Button>
               </Link>

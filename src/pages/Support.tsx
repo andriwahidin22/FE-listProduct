@@ -1,4 +1,3 @@
-
 import Layout from "../components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -89,9 +88,9 @@ const Support = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen text-white">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-16">
+        <div className="bg-white/10 backdrop-blur-sm text-white py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Pusat Bantuan CyberGuard
@@ -106,9 +105,9 @@ const Support = () => {
               <Input
                 type="text"
                 placeholder="Cari bantuan, panduan, atau FAQ..."
-                className="pl-12 pr-4 py-3 text-gray-800 text-lg"
+                className="pl-12 pr-4 py-3 bg-white/10 border-white/20 text-white placeholder-blue-200 text-lg"
               />
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-200" />
             </div>
           </div>
         </div>
@@ -116,34 +115,34 @@ const Support = () => {
         <div className="max-w-7xl mx-auto px-4 py-12">
           {/* Support Channels */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Hubungi Kami</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">Hubungi Kami</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {supportChannels.map((channel, index) => {
                 const IconComponent = channel.icon;
                 return (
-                  <Card key={index} className="hover:shadow-lg transition-shadow duration-300 group">
+                  <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 group text-white">
                     <div className={`h-2 bg-gradient-to-r ${channel.gradient}`}></div>
                     <CardHeader className="text-center">
                       <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${channel.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
                         <IconComponent className="h-8 w-8 text-white" />
                       </div>
-                      <CardTitle className="text-xl">{channel.title}</CardTitle>
-                      <CardDescription>{channel.description}</CardDescription>
+                      <CardTitle className="text-xl text-white">{channel.title}</CardTitle>
+                      <CardDescription className="text-blue-100">{channel.description}</CardDescription>
                     </CardHeader>
                     <CardContent className="text-center">
                       <div className="space-y-3 mb-6">
                         <div>
-                          <span className="font-semibold text-gray-800">Kontak:</span>
-                          <p className="text-blue-600">{channel.contact}</p>
+                          <span className="font-semibold text-white">Kontak:</span>
+                          <p className="text-orange-400">{channel.contact}</p>
                         </div>
                         <div className="flex justify-between">
                           <div>
-                            <span className="text-sm text-gray-600">Availability:</span>
-                            <p className="font-semibold">{channel.availability}</p>
+                            <span className="text-sm text-blue-100">Availability:</span>
+                            <p className="font-semibold text-white">{channel.availability}</p>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-600">Response:</span>
-                            <p className="font-semibold">{channel.responseTime}</p>
+                            <span className="text-sm text-blue-100">Response:</span>
+                            <p className="font-semibold text-white">{channel.responseTime}</p>
                           </div>
                         </div>
                       </div>
@@ -159,21 +158,21 @@ const Support = () => {
 
           {/* FAQ Section */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">Frequently Asked Questions</h2>
             <div className="space-y-4 max-w-4xl mx-auto">
               {faqItems.map((faq, index) => (
-                <Card key={index} className="hover:shadow-md transition-shadow">
+                <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all text-white">
                   <CardHeader>
-                    <CardTitle className="text-lg text-blue-600">{faq.question}</CardTitle>
+                    <CardTitle className="text-lg text-orange-400">{faq.question}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600">{faq.answer}</p>
+                    <p className="text-blue-100">{faq.answer}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
             <div className="text-center mt-8">
-              <Button variant="outline" className="px-8 py-3">
+              <Button variant="outline" className="px-8 py-3 border-white/20 text-white hover:bg-white/10">
                 Lihat Semua FAQ
               </Button>
             </div>
@@ -181,22 +180,22 @@ const Support = () => {
 
           {/* Resources */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Sumber Daya Bantuan</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">Sumber Daya Bantuan</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {resources.map((resource, index) => {
                 const IconComponent = resource.icon;
                 return (
-                  <Card key={index} className="hover:shadow-lg transition-shadow duration-300 group text-center">
+                  <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 group text-center text-white">
                     <CardHeader>
-                      <div className="w-12 h-12 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                        <IconComponent className="h-6 w-6 text-blue-600" />
+                      <div className="w-12 h-12 mx-auto mb-4 bg-orange-500/20 rounded-full flex items-center justify-center group-hover:bg-orange-500/30 transition-colors">
+                        <IconComponent className="h-6 w-6 text-orange-400" />
                       </div>
-                      <CardTitle className="text-lg">{resource.title}</CardTitle>
-                      <CardDescription>{resource.description}</CardDescription>
+                      <CardTitle className="text-lg text-white">{resource.title}</CardTitle>
+                      <CardDescription className="text-blue-100">{resource.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <Link to={resource.link}>
-                        <Button variant="outline" className="w-full">
+                        <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
                           Akses Sekarang
                         </Button>
                       </Link>
@@ -208,16 +207,16 @@ const Support = () => {
           </div>
 
           {/* Emergency Support */}
-          <div className="bg-gradient-to-r from-red-500 to-red-700 rounded-2xl p-8 text-center text-white">
+          <div className="bg-red-500/20 backdrop-blur-sm rounded-2xl p-8 text-center text-white border border-red-400/20">
             <h2 className="text-3xl font-bold mb-4">Bantuan Darurat</h2>
             <p className="text-lg opacity-90 mb-6">
               Mengalami serangan siber atau masalah keamanan kritik? Hubungi tim emergency kami segera
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3">
+              <Button className="bg-red-500 hover:bg-red-600 text-white px-8 py-3">
                 🚨 Emergency Hotline: +62 21 911-CYBER
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-3">
+              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-3">
                 Emergency Chat
               </Button>
             </div>

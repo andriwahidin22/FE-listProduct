@@ -2,41 +2,35 @@
 import Layout from "../components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, Users, Globe, Award, Target, Eye, Heart } from "lucide-react";
+import { Shield, Users, Award, Target, Globe, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const About = () => {
   const stats = [
-    { number: "500K+", label: "Pengguna Aktif", icon: Users },
-    { number: "99.9%", label: "Uptime Guarantee", icon: Shield },
-    { number: "50+", label: "Negara Dilayani", icon: Globe },
-    { number: "10+", label: "Tahun Pengalaman", icon: Award }
+    { label: "Pengguna Aktif", value: "10M+", icon: Users },
+    { label: "Negara", value: "50+", icon: Globe },
+    { label: "Ancaman Terdeteksi", value: "1B+", icon: Shield },
+    { label: "Pertumbuhan YoY", value: "150%", icon: TrendingUp }
   ];
 
   const team = [
     {
-      name: "Dr. Ahmad Cyber",
-      position: "Chief Executive Officer",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
-      description: "15+ tahun pengalaman di industri cybersecurity"
+      name: "Dr. Ahmad Rizki",
+      role: "CEO & Founder",
+      experience: "15+ tahun di cybersecurity",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
     },
     {
-      name: "Sarah Security",
-      position: "Chief Technology Officer",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
-      description: "Expert dalam AI dan machine learning security"
+      name: "Sarah Wijaya",
+      role: "CTO",
+      experience: "12+ tahun di tech development",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612c9be?w=300&h=300&fit=crop&crop=face"
     },
     {
-      name: "Michael Guardian",
-      position: "Head of Research",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
-      description: "Peneliti senior dalam threat intelligence"
-    },
-    {
-      name: "Lisa Defender",
-      position: "Head of Customer Success",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
-      description: "Specialist dalam customer experience"
+      name: "Michael Chen",
+      role: "Head of Security",
+      experience: "10+ tahun di threat intelligence",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face"
     }
   ];
 
@@ -44,109 +38,101 @@ const About = () => {
     {
       icon: Shield,
       title: "Keamanan Utama",
-      description: "Keamanan adalah prioritas utama dalam setiap produk dan layanan yang kami tawarkan"
+      description: "Kami menempatkan keamanan sebagai prioritas utama dalam setiap produk dan layanan"
     },
     {
-      icon: Eye,
-      title: "Transparansi",
-      description: "Kami berkomitmen untuk transparansi penuh dalam operasi dan komunikasi"
-    },
-    {
-      icon: Heart,
+      icon: Users,
       title: "Customer First",
-      description: "Kepuasan dan keamanan customer adalah fokus utama dalam setiap keputusan"
+      description: "Kepuasan dan kepercayaan pelanggan adalah fondasi dari semua yang kami lakukan"
+    },
+    {
+      icon: Award,
+      title: "Inovasi Berkelanjutan",
+      description: "Terus berinovasi dengan teknologi terdepan untuk menghadapi ancaman cyber"
     },
     {
       icon: Target,
-      title: "Inovasi Berkelanjutan",
-      description: "Terus berinovasi untuk menghadapi ancaman cyber yang terus berkembang"
+      title: "Excellence",
+      description: "Berkomitmen memberikan kualitas terbaik dalam setiap aspek bisnis kami"
     }
   ];
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen text-white">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-16">
+        <div className="bg-white/10 backdrop-blur-sm text-white py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Tentang CyberGuard
             </h1>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Melindungi dunia digital sejak 2014. Kami adalah perusahaan keamanan siber 
-              terdepan yang berkomitmen memberikan perlindungan terbaik untuk individu dan bisnis
+              Melindungi dunia digital dengan solusi keamanan siber terdepan. 
+              Dipercaya oleh jutaan pengguna di seluruh dunia sejak 2015.
             </p>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 py-12">
-          {/* Stats Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-indigo-100 rounded-full flex items-center justify-center">
-                    <IconComponent className="h-8 w-8 text-indigo-600" />
-                  </div>
-                  <div className="text-3xl font-bold text-indigo-600 mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
-                </div>
+                <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-center text-white">
+                  <CardContent className="p-6">
+                    <IconComponent className="h-8 w-8 text-orange-400 mx-auto mb-3" />
+                    <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
+                    <div className="text-sm text-blue-100">{stat.label}</div>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>
 
-          {/* Mission & Vision */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <Card className="hover:shadow-lg transition-shadow">
+          {/* Story */}
+          <div className="mb-16">
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
               <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                  <Target className="h-6 w-6 text-blue-600" />
-                </div>
-                <CardTitle className="text-2xl">Misi Kami</CardTitle>
+                <CardTitle className="text-3xl text-center text-white">Cerita Kami</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 leading-relaxed">
-                  Memberikan solusi keamanan siber yang mudah digunakan, andal, dan terjangkau 
-                  untuk melindungi data dan privasi digital setiap orang. Kami berkomitmen untuk 
-                  menjadi garda terdepan dalam menghadapi ancaman cyber yang terus berkembang.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                  <Eye className="h-6 w-6 text-green-600" />
+              <CardContent className="prose prose-lg max-w-none">
+                <div className="text-blue-100 space-y-6">
+                  <p>
+                    CyberGuard didirikan pada tahun 2015 dengan misi sederhana namun ambisius: membuat internet 
+                    menjadi tempat yang lebih aman untuk semua orang. Dimulai dari sebuah startup kecil di Jakarta, 
+                    kami telah berkembang menjadi salah satu penyedia solusi keamanan siber terkemuka di Asia Tenggara.
+                  </p>
+                  <p>
+                    Dengan tim yang terdiri dari para ahli cybersecurity, engineer berpengalaman, dan peneliti 
+                    keamanan, kami terus berinovasi menghadapi ancaman siber yang semakin kompleks. Produk-produk 
+                    kami telah melindungi jutaan perangkat dan membantu organisasi dari berbagai skala.
+                  </p>
+                  <p>
+                    Hari ini, CyberGuard bangga melayani lebih dari 10 juta pengguna di 50+ negara, dengan 
+                    komitmen yang sama: memberikan perlindungan terbaik dengan teknologi yang mudah digunakan.
+                  </p>
                 </div>
-                <CardTitle className="text-2xl">Visi Kami</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 leading-relaxed">
-                  Menjadi perusahaan keamanan siber nomor satu di Asia Tenggara yang dipercaya 
-                  oleh jutaan pengguna. Menciptakan dunia digital yang aman di mana setiap orang 
-                  dapat beraktivitas online tanpa khawatir akan ancaman cyber.
-                </p>
               </CardContent>
             </Card>
           </div>
 
-          {/* Company Values */}
+          {/* Values */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Nilai-Nilai Perusahaan</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">Nilai-Nilai Kami</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((value, index) => {
                 const IconComponent = value.icon;
                 return (
-                  <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                  <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-center text-white hover:bg-white/20 transition-all">
                     <CardHeader>
-                      <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-purple-500 to-purple-700 rounded-full flex items-center justify-center">
-                        <IconComponent className="h-8 w-8 text-white" />
+                      <div className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <IconComponent className="h-6 w-6 text-orange-400" />
                       </div>
-                      <CardTitle className="text-lg">{value.title}</CardTitle>
+                      <CardTitle className="text-lg text-white">{value.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-gray-600">{value.description}</p>
+                      <p className="text-sm text-blue-100">{value.description}</p>
                     </CardContent>
                   </Card>
                 );
@@ -154,72 +140,71 @@ const About = () => {
             </div>
           </div>
 
-          {/* Leadership Team */}
+          {/* Team */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Tim Leadership</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">Tim Leadership</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {team.map((member, index) => (
-                <Card key={index} className="text-center hover:shadow-lg transition-shadow group">
+                <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-center text-white hover:bg-white/20 transition-all">
                   <CardHeader>
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden group-hover:scale-105 transition-transform">
-                      <img 
-                        src={member.image} 
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <CardTitle className="text-lg">{member.name}</CardTitle>
-                    <CardDescription className="text-blue-600 font-medium">
-                      {member.position}
-                    </CardDescription>
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
+                    />
+                    <CardTitle className="text-xl text-white">{member.name}</CardTitle>
+                    <CardDescription className="text-orange-400 font-medium">{member.role}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-gray-600">{member.description}</p>
+                    <p className="text-sm text-blue-100">{member.experience}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </div>
 
-          {/* Company Story */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Cerita Perusahaan</h2>
-            <div className="max-w-4xl mx-auto">
-              <div className="space-y-6 text-gray-600 leading-relaxed">
-                <p>
-                  CyberGuard didirikan pada tahun 2014 oleh sekelompok ahli keamanan siber yang memiliki 
-                  visi sama: membuat internet menjadi tempat yang lebih aman untuk semua orang. Berawal 
-                  dari kantor kecil di Jakarta dengan hanya 5 orang tim, kami mulai mengembangkan solusi 
-                  antivirus pertama kami.
-                </p>
-                <p>
-                  Pada tahun 2016, kami meluncurkan produk firewall enterprise yang mendapat sambutan 
-                  luar biasa dari perusahaan-perusahaan besar di Indonesia. Ini menjadi titik balik yang 
-                  memungkinkan kami untuk ekspansi ke negara-negara ASEAN lainnya.
-                </p>
-                <p>
-                  Hari ini, CyberGuard telah berkembang menjadi perusahaan dengan 200+ karyawan dan 
-                  melayani lebih dari 500,000 pengguna di 50+ negara. Kami terus berinovasi dengan 
-                  teknologi AI dan machine learning untuk menghadapi ancaman cyber yang semakin canggih.
-                </p>
-              </div>
-            </div>
+          {/* Awards */}
+          <div className="mb-16">
+            <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+              <CardHeader>
+                <CardTitle className="text-3xl text-center text-white">Penghargaan & Sertifikasi</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <Award className="h-12 w-12 text-orange-400 mx-auto mb-3" />
+                    <h3 className="font-semibold text-white mb-2">Best Cybersecurity Solution 2023</h3>
+                    <p className="text-sm text-blue-100">Indonesia ICT Awards</p>
+                  </div>
+                  <div className="text-center">
+                    <Shield className="h-12 w-12 text-orange-400 mx-auto mb-3" />
+                    <h3 className="font-semibold text-white mb-2">ISO 27001 Certified</h3>
+                    <p className="text-sm text-blue-100">Information Security Management</p>
+                  </div>
+                  <div className="text-center">
+                    <Users className="h-12 w-12 text-orange-400 mx-auto mb-3" />
+                    <h3 className="font-semibold text-white mb-2">Top Employer 2023</h3>
+                    <p className="text-sm text-blue-100">Great Place to Work Indonesia</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
-          {/* Call to Action */}
-          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Bergabunglah dengan Misi Kami</h2>
+          {/* CTA */}
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center text-white border border-white/20">
+            <h2 className="text-3xl font-bold mb-4">Bergabung dengan Misi Kami</h2>
             <p className="text-lg opacity-90 mb-6">
-              Jadilah bagian dari komunitas yang berkomitmen untuk menciptakan dunia digital yang lebih aman
+              Ingin menjadi bagian dari tim yang melindungi dunia digital? Kami selalu mencari talenta terbaik.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/products">
-                <Button className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-3">
-                  Jelajahi Produk
+              <Link to="/contact">
+                <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3">
+                  Lihat Karir
                 </Button>
               </Link>
               <Link to="/contact">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-3">
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-3">
                   Hubungi Kami
                 </Button>
               </Link>

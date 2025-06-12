@@ -1,4 +1,3 @@
-
 import Layout from "../components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -95,9 +94,9 @@ const Solutions = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen text-white">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-green-600 to-green-800 text-white py-16">
+        <div className="bg-white/10 backdrop-blur-sm text-white py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Solusi Keamanan untuk Setiap Kebutuhan
@@ -115,34 +114,34 @@ const Solutions = () => {
             {solutions.map((solution, index) => {
               const IconComponent = solution.icon;
               return (
-                <Card key={index} className="hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 group overflow-hidden text-white">
                   <div className={`h-2 bg-gradient-to-r ${solution.gradient}`}></div>
                   <CardHeader className="text-center">
                     <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${solution.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}>
                       <IconComponent className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="text-xl mb-2">{solution.title}</CardTitle>
-                    <CardDescription className="text-gray-600">
+                    <CardTitle className="text-xl mb-2 text-white">{solution.title}</CardTitle>
+                    <CardDescription className="text-blue-100">
                       {solution.description}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="mb-6">
-                      <h4 className="font-semibold text-gray-800 mb-3">Fitur Utama:</h4>
+                      <h4 className="font-semibold text-white mb-3">Fitur Utama:</h4>
                       <ul className="space-y-2">
                         {solution.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-center text-sm text-gray-600">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                          <li key={featureIndex} className="flex items-center text-sm text-blue-100">
+                            <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
                             {feature}
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div className="mb-6">
-                      <h4 className="font-semibold text-gray-800 mb-3">Cocok untuk:</h4>
+                      <h4 className="font-semibold text-white mb-3">Cocok untuk:</h4>
                       <div className="flex flex-wrap gap-2">
                         {solution.industries.map((industry, industryIndex) => (
-                          <span key={industryIndex} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                          <span key={industryIndex} className="px-2 py-1 bg-white/10 text-blue-100 text-xs rounded-full">
                             {industry}
                           </span>
                         ))}
@@ -155,7 +154,7 @@ const Solutions = () => {
                         </Button>
                       </Link>
                       <Link to="/products">
-                        <Button variant="outline" className="w-full">
+                        <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
                           Lihat Produk
                         </Button>
                       </Link>
@@ -167,54 +166,54 @@ const Solutions = () => {
           </div>
 
           {/* Why Choose Our Solutions */}
-          <div className="bg-white rounded-2xl p-8 shadow-lg mb-16">
-            <h2 className="text-3xl font-bold text-center mb-12">Mengapa Memilih Solusi CyberGuard?</h2>
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-lg mb-16 border border-white/20">
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">Mengapa Memilih Solusi CyberGuard?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-6 w-6 text-blue-600" />
+                <div className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-6 w-6 text-orange-400" />
                 </div>
-                <h3 className="font-semibold mb-2">Teknologi Terdepan</h3>
-                <p className="text-sm text-gray-600">AI dan machine learning untuk deteksi ancaman real-time</p>
+                <h3 className="font-semibold mb-2 text-white">Teknologi Terdepan</h3>
+                <p className="text-sm text-blue-100">AI dan machine learning untuk deteksi ancaman real-time</p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-6 w-6 text-green-600" />
+                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-6 w-6 text-green-400" />
                 </div>
-                <h3 className="font-semibold mb-2">Tim Ahli</h3>
-                <p className="text-sm text-gray-600">Tim security expert berpengalaman 24/7</p>
+                <h3 className="font-semibold mb-2 text-white">Tim Ahli</h3>
+                <p className="text-sm text-blue-100">Tim security expert berpengalaman 24/7</p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Building2 className="h-6 w-6 text-purple-600" />
+                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Building2 className="h-6 w-6 text-purple-400" />
                 </div>
-                <h3 className="font-semibold mb-2">Scalable</h3>
-                <p className="text-sm text-gray-600">Solusi yang dapat disesuaikan dengan pertumbuhan bisnis</p>
+                <h3 className="font-semibold mb-2 text-white">Scalable</h3>
+                <p className="text-sm text-blue-100">Solusi yang dapat disesuaikan dengan pertumbuhan bisnis</p>
               </div>
               <div className="text-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Cloud className="h-6 w-6 text-orange-600" />
+                <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Cloud className="h-6 w-6 text-cyan-400" />
                 </div>
-                <h3 className="font-semibold mb-2">Cloud-Ready</h3>
-                <p className="text-sm text-gray-600">Kompatibel dengan semua platform cloud major</p>
+                <h3 className="font-semibold mb-2 text-white">Cloud-Ready</h3>
+                <p className="text-sm text-blue-100">Kompatibel dengan semua platform cloud major</p>
               </div>
             </div>
           </div>
 
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center text-white">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center text-white border border-white/20">
             <h2 className="text-3xl font-bold mb-4">Siap Mengamankan Bisnis Anda?</h2>
             <p className="text-lg opacity-90 mb-6">
               Konsultasi gratis dengan security expert kami untuk menemukan solusi yang tepat
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
-                <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3">
+                <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3">
                   Mulai Konsultasi
                 </Button>
               </Link>
               <Link to="/download">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-3">
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-3">
                   Download Trial
                 </Button>
               </Link>
