@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Shield } from "lucide-react";
+import { Menu, X, Shield, Home } from "lucide-react";
 import { useState } from "react";
 
 interface HeaderProps {
@@ -44,6 +44,10 @@ const Header = ({ isHomePage = false }: HeaderProps) => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <Link to="/" className={`${textColor} ${hoverColor} transition-colors flex items-center space-x-1`}>
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </Link>
             <Link to="/products" className={`${textColor} ${hoverColor} transition-colors`}>
               Produk
             </Link>
@@ -87,6 +91,14 @@ const Header = ({ isHomePage = false }: HeaderProps) => {
         {isMobileMenuOpen && (
           <div className={`md:hidden absolute top-full left-0 right-0 ${mobileMenuBg} backdrop-blur-sm border-b border-gray-200 z-50`}>
             <nav className="flex flex-col space-y-4 px-4 py-6">
+              <Link 
+                to="/" 
+                className="text-gray-800 hover:text-blue-600 transition-colors font-medium flex items-center space-x-2"
+                onClick={closeMobileMenu}
+              >
+                <Home className="h-4 w-4" />
+                <span>Home</span>
+              </Link>
               <Link 
                 to="/products" 
                 className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
