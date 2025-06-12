@@ -10,7 +10,7 @@ interface LayoutProps {
 const Layout = ({ children, showHero = false }: LayoutProps) => {
   return (
     <div className={`min-h-screen ${showHero ? 'bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600' : 'bg-gray-50'}`}>
-      <Header />
+      <Header isHomePage={showHero} />
       {children}
     </div>
   );

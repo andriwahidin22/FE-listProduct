@@ -1,11 +1,16 @@
 
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Shield } from "lucide-react";
 import { useState } from "react";
 
-const Header = () => {
+interface HeaderProps {
+  isHomePage?: boolean;
+}
+
+const Header = ({ isHomePage = false }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -15,14 +20,21 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  // Define colors based on page type
+  const textColor = isHomePage ? "text-white" : "text-gray-800";
+  const hoverColor = isHomePage ? "hover:text-white/80" : "hover:text-blue-600";
+  const logoHoverColor = isHomePage ? "hover:text-white/80" : "hover:text-blue-600";
+  const mobileMenuBg = isHomePage ? "bg-white/95" : "bg-white";
+  const headerBg = isHomePage ? "bg-white/10 backdrop-blur-sm border-white/20" : "bg-white border-gray-200 shadow-sm";
+
   return (
-    <header className="bg-white/10 backdrop-blur-sm border-b border-white/20 relative">
+    <header className={`${headerBg} border-b relative`}>
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Link 
               to="/" 
-              className="text-white font-bold text-xl hover:text-white/80 transition-colors flex items-center space-x-2"
+              className={`${textColor} font-bold text-xl ${logoHoverColor} transition-colors flex items-center space-x-2`}
               onClick={closeMobileMenu}
             >
               <Shield className="h-6 w-6" />
@@ -32,22 +44,22 @@ const Header = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/products" className="text-white hover:text-white/80 transition-colors">
+            <Link to="/products" className={`${textColor} ${hoverColor} transition-colors`}>
               Produk
             </Link>
-            <Link to="/solutions" className="text-white hover:text-white/80 transition-colors">
+            <Link to="/solutions" className={`${textColor} ${hoverColor} transition-colors`}>
               Solusi
             </Link>
-            <Link to="/support" className="text-white hover:text-white/80 transition-colors">
+            <Link to="/support" className={`${textColor} ${hoverColor} transition-colors`}>
               Support
             </Link>
-            <Link to="/about" className="text-white hover:text-white/80 transition-colors">
+            <Link to="/about" className={`${textColor} ${hoverColor} transition-colors`}>
               Tentang Kami
             </Link>
-            <Link to="/contact" className="text-white hover:text-white/80 transition-colors">
+            <Link to="/contact" className={`${textColor} ${hoverColor} transition-colors`}>
               Kontak
             </Link>
-            <Link to="/blog" className="text-white hover:text-white/80 transition-colors">
+            <Link to="/blog" className={`${textColor} ${hoverColor} transition-colors`}>
               Blog
             </Link>
           </nav>
@@ -64,7 +76,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="md:hidden text-white hover:text-white/80 transition-colors"
+            className={`md:hidden ${textColor} ${hoverColor} transition-colors`}
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -73,7 +85,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-white/20 z-50">
+          <div className={`md:hidden absolute top-full left-0 right-0 ${mobileMenuBg} backdrop-blur-sm border-b border-gray-200 z-50`}>
             <nav className="flex flex-col space-y-4 px-4 py-6">
               <Link 
                 to="/products" 
