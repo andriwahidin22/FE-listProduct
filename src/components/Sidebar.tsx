@@ -1,15 +1,17 @@
 
-import { Play } from "lucide-react";
+import { Play, Download, Shield, Lock, Zap, Users } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Sidebar = () => {
   return (
     <div className="space-y-6">
-      {/* Video Section */}
+      {/* Video Demo Section */}
       <div className="bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="relative">
           <img 
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=200&fit=crop"
-            alt="Video thumbnail"
+            src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400&h=200&fit=crop"
+            alt="CyberGuard Demo Video"
             className="w-full h-48 object-cover"
           />
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -18,60 +20,84 @@ const Sidebar = () => {
             </button>
           </div>
           <div className="absolute top-4 right-4 bg-blue-600 text-white px-2 py-1 rounded text-xs">
-            7 Tahap Program<br />Kartu Prakerja
+            Demo CyberGuard<br />5 Menit
           </div>
         </div>
         <div className="p-4">
-          <h3 className="font-semibold text-gray-800 mb-2">Langkah Mudah Kartu Prakerja</h3>
-          <div className="grid grid-cols-3 gap-2 text-xs">
-            {Array.from({length: 6}, (_, i) => (
-              <div key={i} className="text-center">
-                <div className="bg-blue-100 rounded-full w-8 h-8 flex items-center justify-center mb-1 mx-auto">
-                  <span className="text-blue-600 font-medium">{i + 1}</span>
-                </div>
-                <div className="text-gray-600 text-xs">Step {i + 1}</div>
-              </div>
-            ))}
-          </div>
+          <h3 className="font-semibold text-gray-800 mb-2">Lihat CyberGuard Beraksi</h3>
+          <p className="text-sm text-gray-600 mb-3">
+            Tonton demo singkat bagaimana CyberGuard melindungi sistem Anda
+          </p>
+          <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+            Tonton Demo
+          </Button>
         </div>
       </div>
 
-      {/* Info Cards */}
+      {/* Quick Features */}
       <div className="bg-white rounded-lg shadow-lg p-4">
-        <h3 className="font-semibold text-gray-800 mb-3">Mitra Kartu Prakerja</h3>
+        <h3 className="font-semibold text-gray-800 mb-3">Fitur Utama</h3>
         <div className="space-y-3">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-blue-100 rounded flex items-center justify-center">
-              <span className="text-blue-600 text-xs font-medium">TK</span>
+              <Shield className="h-4 w-4 text-blue-600" />
             </div>
-            <span className="text-sm text-gray-600">Tokopedia</span>
+            <span className="text-sm text-gray-600">Antivirus Real-time</span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-green-100 rounded flex items-center justify-center">
-              <span className="text-green-600 text-xs font-medium">SK</span>
+              <Lock className="h-4 w-4 text-green-600" />
             </div>
-            <span className="text-sm text-gray-600">Skill Academy</span>
+            <span className="text-sm text-gray-600">Firewall Advanced</span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-purple-100 rounded flex items-center justify-center">
-              <span className="text-purple-600 text-xs font-medium">CK</span>
+              <Zap className="h-4 w-4 text-purple-600" />
             </div>
-            <span className="text-sm text-gray-600">Course-Net</span>
+            <span className="text-sm text-gray-600">Performance Booster</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-orange-100 rounded flex items-center justify-center">
+              <Users className="h-4 w-4 text-orange-600" />
+            </div>
+            <span className="text-sm text-gray-600">Family Protection</span>
           </div>
         </div>
       </div>
 
-      {/* FAQ Section */}
+      {/* Download CTA */}
       <div className="bg-white rounded-lg shadow-lg p-4">
-        <h3 className="font-semibold text-gray-800 mb-3">Tunggu apa lagi?</h3>
+        <h3 className="font-semibold text-gray-800 mb-3">Mulai Sekarang!</h3>
         <img 
-          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=150&fit=crop"
-          alt="CTA image"
+          src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=300&h=150&fit=crop"
+          alt="Secure your system"
           className="w-full h-32 object-cover rounded mb-3"
         />
-        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded font-medium">
-          Daftar Sekarang
-        </button>
+        <p className="text-sm text-gray-600 mb-3">
+          Dapatkan perlindungan terbaik untuk sistem Anda. Trial gratis 30 hari!
+        </p>
+        <Link to="/download">
+          <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded font-medium flex items-center justify-center space-x-2">
+            <Download className="h-4 w-4" />
+            <span>Download Gratis</span>
+          </Button>
+        </Link>
+      </div>
+
+      {/* Support */}
+      <div className="bg-white rounded-lg shadow-lg p-4">
+        <h3 className="font-semibold text-gray-800 mb-3">Butuh Bantuan?</h3>
+        <div className="space-y-2 text-sm">
+          <Link to="/support" className="block text-blue-600 hover:text-blue-800">
+            📞 Hubungi Support
+          </Link>
+          <Link to="/support" className="block text-blue-600 hover:text-blue-800">
+            💬 Live Chat 24/7
+          </Link>
+          <Link to="/support" className="block text-blue-600 hover:text-blue-800">
+            📖 Knowledge Base
+          </Link>
+        </div>
       </div>
     </div>
   );

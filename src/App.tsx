@@ -5,13 +5,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Publikasi from "./pages/Publikasi";
-import LembagaPelatihan from "./pages/LembagaPelatihan";
-import TipsBekerja from "./pages/TipsBekerja";
-import Artikel from "./pages/Artikel";
-import TanyaJawab from "./pages/TanyaJawab";
-import Mitra from "./pages/Mitra";
-import Daftar from "./pages/Daftar";
+import Products from "./pages/Products";
+import Solutions from "./pages/Solutions";
+import Support from "./pages/Support";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import Download from "./pages/Download";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,13 +24,13 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/publikasi" element={<Publikasi />} />
-          <Route path="/lembaga-pelatihan" element={<LembagaPelatihan />} />
-          <Route path="/tips-bekerja" element={<TipsBekerja />} />
-          <Route path="/artikel" element={<Artikel />} />
-          <Route path="/tanya-jawab" element={<TanyaJawab />} />
-          <Route path="/mitra" element={<Mitra />} />
-          <Route path="/daftar" element={<Daftar />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/download" element={<Download />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

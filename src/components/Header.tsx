@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Shield } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
@@ -22,40 +22,41 @@ const Header = () => {
           <div className="flex items-center space-x-2">
             <Link 
               to="/" 
-              className="text-white font-bold text-xl hover:text-white/80 transition-colors"
+              className="text-white font-bold text-xl hover:text-white/80 transition-colors flex items-center space-x-2"
               onClick={closeMobileMenu}
             >
-              prakerja
+              <Shield className="h-6 w-6" />
+              <span>CyberGuard</span>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/publikasi" className="text-white hover:text-white/80 transition-colors">
-              Publikasi
+            <Link to="/products" className="text-white hover:text-white/80 transition-colors">
+              Produk
             </Link>
-            <Link to="/lembaga-pelatihan" className="text-white hover:text-white/80 transition-colors">
-              Lembaga Pelatihan
+            <Link to="/solutions" className="text-white hover:text-white/80 transition-colors">
+              Solusi
             </Link>
-            <Link to="/tips-bekerja" className="text-white hover:text-white/80 transition-colors">
-              Tips Bekerja
+            <Link to="/support" className="text-white hover:text-white/80 transition-colors">
+              Support
             </Link>
-            <Link to="/artikel" className="text-white hover:text-white/80 transition-colors">
-              Artikel
+            <Link to="/about" className="text-white hover:text-white/80 transition-colors">
+              Tentang Kami
             </Link>
-            <Link to="/tanya-jawab" className="text-white hover:text-white/80 transition-colors">
-              Tanya Jawab
+            <Link to="/contact" className="text-white hover:text-white/80 transition-colors">
+              Kontak
             </Link>
-            <Link to="/mitra" className="text-white hover:text-white/80 transition-colors">
-              Mitra
+            <Link to="/blog" className="text-white hover:text-white/80 transition-colors">
+              Blog
             </Link>
           </nav>
 
-          {/* Desktop Register Button */}
+          {/* Desktop Download Button */}
           <div className="hidden md:block">
-            <Link to="/daftar">
+            <Link to="/download">
               <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg">
-                Daftar Sekarang
+                Download Gratis
               </Button>
             </Link>
           </div>
@@ -75,50 +76,50 @@ const Header = () => {
           <div className="md:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-white/20 z-50">
             <nav className="flex flex-col space-y-4 px-4 py-6">
               <Link 
-                to="/publikasi" 
+                to="/products" 
                 className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
                 onClick={closeMobileMenu}
               >
-                Publikasi
+                Produk
               </Link>
               <Link 
-                to="/lembaga-pelatihan" 
+                to="/solutions" 
                 className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
                 onClick={closeMobileMenu}
               >
-                Lembaga Pelatihan
+                Solusi
               </Link>
               <Link 
-                to="/tips-bekerja" 
+                to="/support" 
                 className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
                 onClick={closeMobileMenu}
               >
-                Tips Bekerja
+                Support
               </Link>
               <Link 
-                to="/artikel" 
+                to="/about" 
                 className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
                 onClick={closeMobileMenu}
               >
-                Artikel
+                Tentang Kami
               </Link>
               <Link 
-                to="/tanya-jawab" 
+                to="/contact" 
                 className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
                 onClick={closeMobileMenu}
               >
-                Tanya Jawab
+                Kontak
               </Link>
               <Link 
-                to="/mitra" 
+                to="/blog" 
                 className="text-gray-800 hover:text-blue-600 transition-colors font-medium"
                 onClick={closeMobileMenu}
               >
-                Mitra
+                Blog
               </Link>
-              <Link to="/daftar" onClick={closeMobileMenu}>
+              <Link to="/download" onClick={closeMobileMenu}>
                 <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg w-full">
-                  Daftar Sekarang
+                  Download Gratis
                 </Button>
               </Link>
             </nav>
