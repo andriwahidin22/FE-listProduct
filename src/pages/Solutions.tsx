@@ -93,7 +93,7 @@ const Solutions = () => {
   ];
 
   return (
-    <Layout>
+    <Layout showHero={true}>
       <div className="min-h-screen text-white">
         {/* Hero Section */}
         <div className="bg-white/10 backdrop-blur-sm text-white py-16">
@@ -154,7 +154,7 @@ const Solutions = () => {
                         </Button>
                       </Link>
                       <Link to="/products">
-                        <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                        <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
                           Lihat Produk
                         </Button>
                       </Link>
@@ -213,7 +213,7 @@ const Solutions = () => {
                 </Button>
               </Link>
               <Link to="/download">
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-3">
+                <Button variant="outline" className="border-white/20 text-black hover:bg-white/10 px-8 py-3">
                   Download Trial
                 </Button>
               </Link>

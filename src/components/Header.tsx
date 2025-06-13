@@ -45,7 +45,6 @@ const Header = ({ isHomePage = false }: HeaderProps) => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link to="/" className={`${textColor} ${hoverColor} transition-colors flex items-center space-x-1`}>
-              <Home className="h-4 w-4" />
               <span>Home</span>
             </Link>
             <Link to="/products" className={`${textColor} ${hoverColor} transition-colors`}>

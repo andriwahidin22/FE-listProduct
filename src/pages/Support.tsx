@@ -87,7 +87,7 @@ const Support = () => {
   ];
 
   return (
-    <Layout>
+    <Layout showHero={true}>
       <div className="min-h-screen text-white">
         {/* Hero Section */}
         <div className="bg-white/10 backdrop-blur-sm text-white py-16">
@@ -172,7 +172,7 @@ const Support = () => {
               ))}
             </div>
             <div className="text-center mt-8">
-              <Button variant="outline" className="px-8 py-3 border-white/20 text-white hover:bg-white/10">
+              <Button variant="outline" className="px-8 py-3 border-white/20 text-black hover:bg-white/10">
                 Lihat Semua FAQ
               </Button>
             </div>
@@ -195,7 +195,7 @@ const Support = () => {
                     </CardHeader>
                     <CardContent>
                       <Link to={resource.link}>
-                        <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                        <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
                           Akses Sekarang
                         </Button>
                       </Link>

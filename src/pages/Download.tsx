@@ -36,7 +36,7 @@ const DownloadPage = () => {
   ];
 
   return (
-    <Layout>
+    <Layout showHero={true}>
       <div className="min-h-screen text-white py-12">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -180,7 +180,7 @@ const DownloadPage = () => {
                 <p className="text-sm text-blue-100 mb-4">
                   Akses dashboard keamanan melalui browser
                 </p>
-                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
                   Buka Web Console
                 </Button>
               </CardContent>
@@ -193,7 +193,7 @@ const DownloadPage = () => {
                 <p className="text-sm text-blue-100 mb-4">
                   Download dari Google Play atau App Store
                 </p>
-                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
                   Ke App Store
                 </Button>
               </CardContent>
@@ -206,7 +206,7 @@ const DownloadPage = () => {
                 <p className="text-sm text-blue-100 mb-4">
                   Untuk deployment enterprise
                 </p>
-                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">
+                <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
                   Download MSI
                 </Button>
               </CardContent>

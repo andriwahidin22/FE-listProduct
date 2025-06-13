@@ -74,7 +74,7 @@ const Contact = () => {
   ];
 
   return (
-    <Layout>
+    <Layout showHero={true}>
       <div className="min-h-screen text-white">
         {/* Hero Section */}
         <div className="bg-white/10 backdrop-blur-sm text-white py-16">
@@ -238,7 +238,7 @@ const Contact = () => {
               <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3">
                 Lihat FAQ
               </Button>
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-3">
+              <Button variant="outline" className="border-white/20 text-black hover:bg-white/10 px-8 py-3">
                 Live Chat Support
               </Button>
             </div>
