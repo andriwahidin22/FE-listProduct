@@ -1,5 +1,5 @@
 
-import { Play, Download, Shield, Lock, Zap, Users } from "lucide-react";
+import { Play, Download, Shield, Lock, Zap, Users, Clock, Star, Award, Headphones } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -97,6 +97,106 @@ const Sidebar = () => {
           <Link to="/support" className="block text-blue-600 hover:text-blue-800">
             📖 Knowledge Base
           </Link>
+        </div>
+      </div>
+
+      {/* System Requirements */}
+      <div className="bg-white rounded-lg shadow-lg p-4">
+        <h3 className="font-semibold text-gray-800 mb-3">Sistem Requirements</h3>
+        <div className="space-y-2 text-xs text-gray-600">
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>Windows 10/11</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>RAM 4GB minimum</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>Storage 2GB free</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span>Internet connection</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Latest News */}
+      <div className="bg-white rounded-lg shadow-lg p-4">
+        <h3 className="font-semibold text-gray-800 mb-3">Berita Terbaru</h3>
+        <div className="space-y-3">
+          <div className="border-b pb-2">
+            <h4 className="text-sm font-medium text-gray-700">Update Keamanan v5.2</h4>
+            <p className="text-xs text-gray-500">Perlindungan terhadap ransomware terbaru</p>
+            <span className="text-xs text-blue-600">2 hari lalu</span>
+          </div>
+          <div className="border-b pb-2">
+            <h4 className="text-sm font-medium text-gray-700">AI Detection Enhanced</h4>
+            <p className="text-xs text-gray-500">Deteksi malware dengan AI terbaru</p>
+            <span className="text-xs text-blue-600">1 minggu lalu</span>
+          </div>
+        </div>
+        <Link to="/news" className="text-xs text-blue-600 hover:text-blue-800 mt-2 block">
+          Lihat semua berita →
+        </Link>
+      </div>
+
+      {/* Quick Stats */}
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg p-4 text-white">
+        <h3 className="font-semibold mb-3">CyberGuard Stats</h3>
+        <div className="grid grid-cols-2 gap-3 text-center">
+          <div>
+            <div className="text-lg font-bold">99.9%</div>
+            <div className="text-xs opacity-90">Detection Rate</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold">24/7</div>
+            <div className="text-xs opacity-90">Monitoring</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold">10M+</div>
+            <div className="text-xs opacity-90">Users</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold">150+</div>
+            <div className="text-xs opacity-90">Countries</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Awards & Recognition */}
+      <div className="bg-white rounded-lg shadow-lg p-4">
+        <h3 className="font-semibold text-gray-800 mb-3">Penghargaan</h3>
+        <div className="space-y-2">
+          <div className="flex items-center space-x-2">
+            <Award className="h-4 w-4 text-yellow-500" />
+            <span className="text-xs text-gray-600">VB100 Award 2024</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Star className="h-4 w-4 text-yellow-500" />
+            <span className="text-xs text-gray-600">PC Magazine Editor's Choice</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Shield className="h-4 w-4 text-blue-500" />
+            <span className="text-xs text-gray-600">AV-TEST Best Protection</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Info */}
+      <div className="bg-white rounded-lg shadow-lg p-4">
+        <h3 className="font-semibold text-gray-800 mb-3">Kontak Kami</h3>
+        <div className="space-y-2 text-xs text-gray-600">
+          <div className="flex items-center space-x-2">
+            <Headphones className="h-3 w-3" />
+            <span>+62 21 1234 5678</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Clock className="h-3 w-3" />
+            <span>Senin - Jumat: 08:00 - 18:00</span>
+          </div>
         </div>
       </div>
     </div>
