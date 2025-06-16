@@ -8,6 +8,8 @@ import Sidebar from "../components/Sidebar";
 import FeaturesSection from "../components/FeaturesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import StatsSection from "../components/StatsSection";
+import NewsSection from "../components/NewsSection";
+import PartnersSection from "../components/PartnersSection";
 
 const Index = () => {
   return (
@@ -27,6 +29,12 @@ const Index = () => {
             <RequirementsSection />
             <ProgramSection />
           </div>
+          
+          {/* Partners Section */}
+          <PartnersSection />
+          
+          {/* News Section */}
+          <NewsSection />
           
           {/* Testimonials */}
           <TestimonialsSection />
