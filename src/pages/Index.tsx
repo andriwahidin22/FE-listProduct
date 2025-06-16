@@ -1,4 +1,3 @@
-
 import Layout from "../components/Layout";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
@@ -16,38 +15,39 @@ import CTASection from "../components/CTASection";
 const Index = () => {
   return (
     <Layout showHero={true}>
+      <div className="h-12" />
       <div className="flex flex-col lg:flex-row gap-8">
         <main className="flex-1 max-w-none lg:max-w-4xl mx-auto px-4">
           <HeroSection />
-          
+
           {/* Stats Section */}
           <StatsSection />
-          
+
           {/* Features Overview */}
           <FeaturesSection />
-          
+
           {/* Trust & Security Section */}
           <TrustSection />
-          
+
           <div className="bg-white rounded-lg shadow-lg mt-8 p-8">
             <AboutSection />
             <RequirementsSection />
             <ProgramSection />
           </div>
-          
+
           {/* Partners Section */}
           <PartnersSection />
-          
+
           {/* News Section */}
           <NewsSection />
-          
+
           {/* Testimonials */}
           <TestimonialsSection />
-          
+
           {/* Final CTA Section */}
           <CTASection />
         </main>
-        
+
         <aside className="w-full lg:w-80 p-4">
           <div className="lg:sticky lg:top-4 lg:max-h-screen lg:overflow-y-auto">
             <Sidebar />

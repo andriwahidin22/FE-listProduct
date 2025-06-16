@@ -1,8 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Shield, Home } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
   isHomePage?: boolean;
@@ -10,6 +9,7 @@ interface HeaderProps {
 
 const Header = ({ isHomePage = false }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   const toggleMobileMenu = () => {
@@ -20,15 +20,30 @@ const Header = ({ isHomePage = false }: HeaderProps) => {
     setIsMobileMenuOpen(false);
   };
 
-  // Define colors based on page type
-  const textColor = isHomePage ? "text-white" : "text-gray-800";
-  const hoverColor = isHomePage ? "hover:text-white/80" : "hover:text-blue-600";
-  const logoHoverColor = isHomePage ? "hover:text-white/80" : "hover:text-blue-600";
+  // Scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Dynamic styles
+  const textColor = isHomePage && !scrolled ? "text-white" : "text-gray-800";
+  const hoverColor = isHomePage && !scrolled ? "hover:text-white/80" : "hover:text-blue-600";
+  const logoHoverColor = isHomePage && !scrolled ? "hover:text-white/80" : "hover:text-blue-600";
   const mobileMenuBg = isHomePage ? "bg-white/95" : "bg-white";
-  const headerBg = isHomePage ? "bg-white/10 backdrop-blur-sm border-white/20" : "bg-white border-gray-200 shadow-sm";
+
+  const headerBg = isHomePage
+    ? scrolled
+      ? "bg-white shadow-md border-b border-gray-200"
+      : "bg-white/10 backdrop-blur-sm border-white/20"
+    : "bg-white border-gray-200 shadow-sm";
 
   return (
-    <header className={`${headerBg} border-b relative`}>
+    <header className={`${headerBg} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}>
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -41,7 +56,7 @@ const Header = ({ isHomePage = false }: HeaderProps) => {
               <span>CyberGuard</span>
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link to="/" className={`${textColor} ${hoverColor} transition-colors flex items-center space-x-1`}>

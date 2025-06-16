@@ -1,9 +1,21 @@
-
 import Layout from "../components/Layout";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, Shield, Check, Smartphone, Laptop, Globe } from "lucide-react";
+import {
+  Download,
+  Shield,
+  Check,
+  Smartphone,
+  Laptop,
+  Globe,
+} from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -24,28 +36,53 @@ const DownloadPage = () => {
 
     toast({
       title: "Download Dimulai",
-      description: "File installer sedang didownload. Periksa folder Downloads Anda.",
+      description:
+        "File installer sedang didownload. Periksa folder Downloads Anda.",
     });
   };
 
   const platforms = [
-    { id: "windows", name: "Windows", icon: <Laptop className="h-6 w-6" />, size: "152 MB" },
-    { id: "mac", name: "macOS", icon: <Laptop className="h-6 w-6" />, size: "198 MB" },
-    { id: "android", name: "Android", icon: <Smartphone className="h-6 w-6" />, size: "45 MB" },
-    { id: "ios", name: "iOS", icon: <Smartphone className="h-6 w-6" />, size: "67 MB" }
+    {
+      id: "windows",
+      name: "Windows",
+      icon: <Laptop className="h-6 w-6" />,
+      size: "152 MB",
+    },
+    {
+      id: "mac",
+      name: "macOS",
+      icon: <Laptop className="h-6 w-6" />,
+      size: "198 MB",
+    },
+    {
+      id: "android",
+      name: "Android",
+      icon: <Smartphone className="h-6 w-6" />,
+      size: "45 MB",
+    },
+    {
+      id: "ios",
+      name: "iOS",
+      icon: <Smartphone className="h-6 w-6" />,
+      size: "67 MB",
+    },
   ];
 
   return (
     <Layout showHero={true}>
+      <div className="h-12" />
       <div className="min-h-screen text-white py-12">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <div className="bg-orange-500/20 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
               <Download className="h-12 w-12 text-orange-400" />
             </div>
-            <h1 className="text-4xl font-bold text-white mb-4">Download CyberGuard</h1>
+            <h1 className="text-4xl font-bold text-white mb-4">
+              Download CyberGuard
+            </h1>
             <p className="text-xl text-blue-100">
-              Mulai trial gratis 30 hari dan rasakan perlindungan terbaik untuk sistem Anda
+              Mulai trial gratis 30 hari dan rasakan perlindungan terbaik untuk
+              sistem Anda
             </p>
           </div>
 
@@ -73,13 +110,17 @@ const DownloadPage = () => {
                         onClick={() => setSelectedPlatform(platform.id)}
                         className={`p-3 border rounded-lg flex flex-col items-center space-y-2 transition-colors ${
                           selectedPlatform === platform.id
-                            ? 'border-orange-400 bg-orange-500/20'
-                            : 'border-white/20 hover:border-white/30'
+                            ? "border-orange-400 bg-orange-500/20"
+                            : "border-white/20 hover:border-white/30"
                         }`}
                       >
                         {platform.icon}
-                        <span className="text-sm font-medium text-white">{platform.name}</span>
-                        <span className="text-xs text-blue-100">{platform.size}</span>
+                        <span className="text-sm font-medium text-white">
+                          {platform.name}
+                        </span>
+                        <span className="text-xs text-blue-100">
+                          {platform.size}
+                        </span>
                       </button>
                     ))}
                   </div>
@@ -98,7 +139,7 @@ const DownloadPage = () => {
                   />
                 </div>
 
-                <Button 
+                <Button
                   onClick={handleDownload}
                   className="w-full bg-orange-500 hover:bg-orange-600 text-white"
                 >
@@ -107,7 +148,11 @@ const DownloadPage = () => {
                 </Button>
 
                 <p className="text-xs text-blue-200 text-center">
-                  Dengan mendownload, Anda menyetujui <a href="#" className="text-orange-400">Terms of Service</a> kami
+                  Dengan mendownload, Anda menyetujui{" "}
+                  <a href="#" className="text-orange-400">
+                    Terms of Service
+                  </a>{" "}
+                  kami
                 </p>
               </CardContent>
             </Card>
@@ -130,7 +175,7 @@ const DownloadPage = () => {
                     "24/7 customer support",
                     "VPN terintegrasi (1GB/bulan)",
                     "Password manager basic",
-                    "Performance optimization tools"
+                    "Performance optimization tools",
                   ].map((feature, index) => (
                     <li key={index} className="flex items-center space-x-3">
                       <Check className="h-5 w-5 text-green-400" />
@@ -180,7 +225,10 @@ const DownloadPage = () => {
                 <p className="text-sm text-blue-100 mb-4">
                   Akses dashboard keamanan melalui browser
                 </p>
-                <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
+                <Button
+                  variant="outline"
+                  className="w-full border-white/20 text-black hover:bg-white/10"
+                >
                   Buka Web Console
                 </Button>
               </CardContent>
@@ -193,7 +241,10 @@ const DownloadPage = () => {
                 <p className="text-sm text-blue-100 mb-4">
                   Download dari Google Play atau App Store
                 </p>
-                <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
+                <Button
+                  variant="outline"
+                  className="w-full border-white/20 text-black hover:bg-white/10"
+                >
                   Ke App Store
                 </Button>
               </CardContent>
@@ -206,7 +257,10 @@ const DownloadPage = () => {
                 <p className="text-sm text-blue-100 mb-4">
                   Untuk deployment enterprise
                 </p>
-                <Button variant="outline" className="w-full border-white/20 text-black hover:bg-white/10">
+                <Button
+                  variant="outline"
+                  className="w-full border-white/20 text-black hover:bg-white/10"
+                >
                   Download MSI
                 </Button>
               </CardContent>
