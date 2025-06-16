@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Download, Shield, Lock, Zap, CheckCircle, Play } from "lucide-react";
+import { Download, Shield, Lock, Zap, CheckCircle, Play, Star, Users, Globe } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -40,8 +40,14 @@ const HeroSection = () => {
     "Support 24/7"
   ];
 
+  const trustIndicators = [
+    { icon: Users, text: "10M+ Pengguna", color: "text-blue-300" },
+    { icon: Star, text: "Rating 4.9/5", color: "text-yellow-300" },
+    { icon: Globe, text: "150+ Negara", color: "text-green-300" }
+  ];
+
   return (
-    <section className="py-16 text-center text-white">
+    <section className="py-12 text-center text-white">
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-center mb-6">
           <div className="bg-white/10 backdrop-blur-sm rounded-full p-6 relative">
@@ -66,14 +72,27 @@ const HeroSection = () => {
           </span>
         </h1>
         
-        <p className="text-lg md:text-xl mb-8 opacity-90 max-w-4xl mx-auto leading-relaxed">
+        <p className="text-lg md:text-xl mb-6 opacity-90 max-w-4xl mx-auto leading-relaxed">
           Solusi keamanan siber terdepan dengan teknologi AI untuk melindungi bisnis Anda dari 
           ancaman malware, virus, ransomware, dan serangan siber lainnya. Dapatkan perlindungan 
           real-time yang dapat diandalkan.
         </p>
 
+        {/* Trust Indicators */}
+        <div className="flex flex-wrap justify-center items-center gap-6 mb-8">
+          {trustIndicators.map((indicator, index) => {
+            const IconComponent = indicator.icon;
+            return (
+              <div key={index} className="flex items-center space-x-2 bg-white/10 rounded-full px-4 py-2">
+                <IconComponent className={`h-4 w-4 ${indicator.color}`} />
+                <span className="text-sm">{indicator.text}</span>
+              </div>
+            );
+          })}
+        </div>
+
         {/* Download CTA */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8 border border-white/20">
+        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-white/20">
           <h3 className="text-2xl font-bold mb-4">Mulai Trial Gratis Sekarang!</h3>
           
           <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto mb-6">
@@ -107,7 +126,7 @@ const HeroSection = () => {
         </div>
 
         {/* Demo Video */}
-        <div className="mb-12">
+        <div className="mb-8">
           <div className="relative max-w-2xl mx-auto">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
               <div className="relative bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg overflow-hidden">
@@ -133,9 +152,9 @@ const HeroSection = () => {
         </div>
 
         {/* Feature Icons */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="text-center group">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-4 border border-white/20 group-hover:bg-white/20 transition-all">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-4 border border-white/20 group-hover:bg-white/20 transition-all">
               <Shield className="h-12 w-12 text-orange-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-3">Antivirus Real-time</h3>
               <p className="text-sm opacity-80 leading-relaxed">
@@ -144,7 +163,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="text-center group">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-4 border border-white/20 group-hover:bg-white/20 transition-all">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-4 border border-white/20 group-hover:bg-white/20 transition-all">
               <Lock className="h-12 w-12 text-orange-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-3">Firewall Advanced</h3>
               <p className="text-sm opacity-80 leading-relaxed">
@@ -153,7 +172,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="text-center group">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-4 border border-white/20 group-hover:bg-white/20 transition-all">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-4 border border-white/20 group-hover:bg-white/20 transition-all">
               <Zap className="h-12 w-12 text-orange-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-3">Performa Optimal</h3>
               <p className="text-sm opacity-80 leading-relaxed">

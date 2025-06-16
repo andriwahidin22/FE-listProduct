@@ -10,6 +10,8 @@ import TestimonialsSection from "../components/TestimonialsSection";
 import StatsSection from "../components/StatsSection";
 import NewsSection from "../components/NewsSection";
 import PartnersSection from "../components/PartnersSection";
+import TrustSection from "../components/TrustSection";
+import CTASection from "../components/CTASection";
 
 const Index = () => {
   return (
@@ -23,6 +25,9 @@ const Index = () => {
           
           {/* Features Overview */}
           <FeaturesSection />
+          
+          {/* Trust & Security Section */}
+          <TrustSection />
           
           <div className="bg-white rounded-lg shadow-lg mt-8 p-8">
             <AboutSection />
@@ -38,6 +43,9 @@ const Index = () => {
           
           {/* Testimonials */}
           <TestimonialsSection />
+          
+          {/* Final CTA Section */}
+          <CTASection />
         </main>
         
         <aside className="w-full lg:w-80 p-4">
