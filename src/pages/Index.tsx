@@ -49,7 +49,9 @@ const Index = () => {
         </main>
         
         <aside className="w-full lg:w-80 p-4">
-          <Sidebar />
+          <div className="lg:sticky lg:top-4 lg:max-h-screen lg:overflow-y-auto">
+            <Sidebar />
+          </div>
         </aside>
       </div>
     </Layout>
