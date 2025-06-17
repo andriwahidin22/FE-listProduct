@@ -17,6 +17,7 @@ import {
   Smartphone,
   Server,
   AlertTriangle,
+  ExternalLink,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -36,6 +37,8 @@ const Products = () => {
         "Email security",
       ],
       category: "Personal",
+      website: "https://www.norton.com",
+      downloadUrl: "https://www.norton.com/downloads",
     },
     {
       id: 2,
@@ -51,6 +54,8 @@ const Products = () => {
         "Multi-layer security",
       ],
       category: "Enterprise",
+      website: "https://www.checkpoint.com",
+      downloadUrl: "https://www.checkpoint.com/downloads",
     },
     {
       id: 3,
@@ -66,6 +71,8 @@ const Products = () => {
         "Memory booster",
       ],
       category: "Personal",
+      website: "https://www.ccleaner.com",
+      downloadUrl: "https://www.ccleaner.com/download",
     },
     {
       id: 4,
@@ -81,6 +88,8 @@ const Products = () => {
         "Content filtering",
       ],
       category: "Family",
+      website: "https://www.qustodio.com",
+      downloadUrl: "https://www.qustodio.com/download",
     },
     {
       id: 5,
@@ -96,6 +105,8 @@ const Products = () => {
         "Privacy protection",
       ],
       category: "Personal",
+      website: "https://www.bitdefender.com",
+      downloadUrl: "https://www.bitdefender.com/download",
     },
     {
       id: 6,
@@ -106,6 +117,8 @@ const Products = () => {
       price: "Rp 179.000/tahun",
       features: ["App scanning", "Anti-theft", "VPN mobile", "Safe WiFi"],
       category: "Mobile",
+      website: "https://www.lookout.com",
+      downloadUrl: "https://www.lookout.com/download",
     },
     {
       id: 7,
@@ -120,6 +133,8 @@ const Products = () => {
         "24/7 support",
       ],
       category: "Enterprise",
+      website: "https://www.trendmicro.com",
+      downloadUrl: "https://www.trendmicro.com/download",
     },
     {
       id: 8,
@@ -135,6 +150,8 @@ const Products = () => {
         "Expert consultation",
       ],
       category: "Enterprise",
+      website: "https://www.crowdstrike.com",
+      downloadUrl: "https://www.crowdstrike.com/download",
     },
   ];
 
@@ -223,17 +240,20 @@ const Products = () => {
                       ))}
                     </ul>
                     <div className="space-y-2">
-                      <Link to="/download">
+                      <a href={product.downloadUrl} target="_blank" rel="noopener noreferrer">
                         <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                          <ExternalLink className="h-4 w-4 mr-2" />
                           Download Sekarang
                         </Button>
+                      </a>
+                      <Link to={`/products/${product.id}`}>
+                        <Button
+                          variant="outline"
+                          className="w-full border-white/20 text-black hover:bg-white/10"
+                        >
+                          Pelajari Lebih Lanjut
+                        </Button>
                       </Link>
-                      <Button
-                        variant="outline"
-                        className="w-full border-white/20 text-black hover:bg-white/10"
-                      >
-                        Pelajari Lebih Lanjut
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
