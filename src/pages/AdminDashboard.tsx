@@ -5,71 +5,141 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Shield, Plus, Edit, Trash2, LogOut, Package, Newspaper, BarChart3 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Shield, Plus, Edit, Trash2, LogOut, Package, Newspaper, BarChart3, Download, Users, MessageSquare, FileText, Globe, Settings } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import AdminSidebar from '../components/AdminSidebar';
 
 const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState('overview');
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [editingItem, setEditingItem] = useState<any>(null);
+  const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
+  
+  // Get active tab from URL
+  const getActiveTabFromPath = () => {
+    const path = location.pathname;
+    if (path.includes('/products')) return 'products';
+    if (path.includes('/news')) return 'news';
+    if (path.includes('/downloads')) return 'downloads';
+    if (path.includes('/users')) return 'users';
+    if (path.includes('/messages')) return 'messages';
+    if (path.includes('/pages')) return 'pages';
+    if (path.includes('/website')) return 'website';
+    if (path.includes('/settings')) return 'settings';
+    return 'overview';
+  };
 
-  // Product states
+  const [activeTab, setActiveTab] = useState(getActiveTabFromPath());
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [editingItem, setEditingItem] = useState<any>(null);
+
+  // Products state
   const [products, setProducts] = useState([
     {
       id: 1,
       name: 'CyberGuard Antivirus Pro',
       description: 'Perlindungan antivirus terdepan dengan teknologi AI untuk deteksi real-time',
-      longDescription: 'CyberGuard Antivirus Pro adalah solusi keamanan terdepan yang menggunakan teknologi Artificial Intelligence untuk memberikan proteksi real-time terhadap berbagai ancaman cyber. Dengan database yang selalu update dan algoritma machine learning canggih, produk ini mampu mendeteksi malware, virus, ransomware, dan ancaman siber lainnya dengan tingkat akurasi tinggi. Dilengkapi dengan firewall terintegrasi, web protection, dan email security untuk perlindungan komprehensif.',
+      longDescription: 'CyberGuard Antivirus Pro adalah solusi keamanan terdepan yang menggunakan teknologi Artificial Intelligence untuk memberikan proteksi real-time terhadap berbagai ancaman cyber.',
       price: 'Rp 299.000/tahun',
       category: 'Personal',
       website: 'https://www.norton.com',
       downloadUrl: 'https://www.norton.com/downloads',
       features: ['Real-time scanning', 'AI malware detection', 'Web protection', 'Email security']
-    },
-    {
-      id: 2,
-      name: 'CyberGuard Firewall Enterprise',
-      description: 'Solusi firewall tingkat enterprise untuk perlindungan jaringan komprehensif',
-      longDescription: 'CyberGuard Firewall Enterprise adalah solusi keamanan jaringan tingkat enterprise yang dirancang khusus untuk melindungi infrastruktur IT perusahaan dari ancaman cyber canggih. Dengan teknologi deep packet inspection, intrusion detection system (IDS), dan advanced threat protection, produk ini memberikan visibilitas penuh terhadap lalu lintas jaringan dan mampu mendeteksi serta memblokir ancaman dalam real-time.',
-      price: 'Rp 2.999.000/tahun',
-      category: 'Enterprise',
-      website: 'https://www.checkpoint.com',
-      downloadUrl: 'https://www.checkpoint.com/downloads',
-      features: ['Advanced threat detection', 'Network monitoring', 'VPN support', 'Multi-layer security']
     }
   ]);
 
-  // News states
+  // News state
   const [news, setNews] = useState([
     {
       id: 1,
       title: 'Update Keamanan Terbaru CyberGuard 2024',
       content: 'CyberGuard telah merilis update keamanan terbaru yang mencakup proteksi terhadap ancaman ransomware generasi terbaru.',
       date: '2024-01-15',
-      author: 'Tim CyberGuard'
-    },
-    {
-      id: 2,
-      title: 'Tips Melindungi Data dari Serangan Phishing',
-      content: 'Pelajari cara-cara efektif untuk melindungi data pribadi dan perusahaan dari serangan phishing yang semakin canggih.',
-      date: '2024-01-10',
-      author: 'Security Expert'
+      author: 'Tim CyberGuard',
+      status: 'Published'
     }
   ]);
+
+  // Downloads state
+  const [downloads, setDownloads] = useState([
+    {
+      id: 1,
+      name: 'CyberGuard Scanner Tool',
+      description: 'Tool scanner gratis untuk deteksi malware',
+      fileUrl: 'https://example.com/scanner.exe',
+      fileSize: '15.2 MB',
+      version: '2.1.0',
+      category: 'Tools'
+    }
+  ]);
+
+  // Users state
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      name: 'John Doe',
+      email: 'john@example.com',
+      role: 'Admin',
+      status: 'Active',
+      joinDate: '2024-01-01'
+    }
+  ]);
+
+  // Messages state
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      name: 'Jane Smith',
+      email: 'jane@example.com',
+      subject: 'Pertanyaan tentang produk',
+      message: 'Saya ingin mengetahui lebih lanjut tentang CyberGuard Pro',
+      date: '2024-01-15',
+      status: 'Unread'
+    }
+  ]);
+
+  // Pages state
+  const [pages, setPages] = useState([
+    {
+      id: 1,
+      title: 'Tentang Kami',
+      slug: 'about',
+      content: 'Konten halaman tentang kami',
+      status: 'Published',
+      lastModified: '2024-01-15'
+    }
+  ]);
+
+  // Website settings state
+  const [websiteSettings, setWebsiteSettings] = useState({
+    siteName: 'CyberGuard',
+    siteDescription: 'Solusi Keamanan Cyber Terdepan',
+    contactEmail: 'info@cyberguard.com',
+    contactPhone: '+62-21-1234567',
+    address: 'Jakarta, Indonesia'
+  });
+
+  // General settings state
+  const [generalSettings, setGeneralSettings] = useState({
+    maintenanceMode: false,
+    allowRegistration: true,
+    emailNotifications: true,
+    backupFrequency: 'Daily',
+    timezone: 'Asia/Jakarta'
+  });
 
   const [formData, setFormData] = useState<any>({});
 
   useEffect(() => {
-    // Check admin auth
     const adminAuth = localStorage.getItem('adminAuth');
     if (!adminAuth) {
       navigate('/admin/login');
     }
   }, [navigate]);
+
+  useEffect(() => {
+    setActiveTab(getActiveTabFromPath());
+  }, [location.pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminAuth');
@@ -80,33 +150,49 @@ const AdminDashboard = () => {
     navigate('/admin/login');
   };
 
-  const handleAddProduct = () => {
-    const newProduct = {
-      id: Date.now(),
-      ...formData,
-      features: formData.features ? formData.features.split(',').map((f: string) => f.trim()) : []
-    };
-    setProducts([...products, newProduct]);
-    setFormData({});
-    setShowAddForm(false);
-    toast({
-      title: 'Produk Ditambahkan',
-      description: 'Produk baru berhasil ditambahkan',
-    });
+  // Generic handlers
+  const getDataByTab = () => {
+    switch (activeTab) {
+      case 'products': return products;
+      case 'news': return news;
+      case 'downloads': return downloads;
+      case 'users': return users;
+      case 'messages': return messages;
+      case 'pages': return pages;
+      default: return [];
+    }
   };
 
-  const handleAddNews = () => {
-    const newNews = {
+  const setDataByTab = (data: any) => {
+    switch (activeTab) {
+      case 'products': setProducts(data); break;
+      case 'news': setNews(data); break;
+      case 'downloads': setDownloads(data); break;
+      case 'users': setUsers(data); break;
+      case 'messages': setMessages(data); break;
+      case 'pages': setPages(data); break;
+    }
+  };
+
+  const handleAdd = () => {
+    const newItem = {
       id: Date.now(),
       ...formData,
-      date: new Date().toISOString().split('T')[0]
+      ...(activeTab === 'products' && { features: formData.features ? formData.features.split(',').map((f: string) => f.trim()) : [] }),
+      ...(activeTab === 'news' && { date: new Date().toISOString().split('T')[0] }),
+      ...(activeTab === 'users' && { joinDate: new Date().toISOString().split('T')[0] }),
+      ...(activeTab === 'messages' && { date: new Date().toISOString().split('T')[0] }),
+      ...(activeTab === 'pages' && { lastModified: new Date().toISOString().split('T')[0] })
     };
-    setNews([...news, newNews]);
+    
+    const currentData = getDataByTab();
+    setDataByTab([...currentData, newItem]);
     setFormData({});
     setShowAddForm(false);
+    
     toast({
-      title: 'Berita Ditambahkan',
-      description: 'Berita baru berhasil ditambahkan',
+      title: 'Data Ditambahkan',
+      description: `${getTabDisplayName()} baru berhasil ditambahkan`,
     });
   };
 
@@ -114,50 +200,509 @@ const AdminDashboard = () => {
     setEditingItem(item);
     setFormData({
       ...item,
-      features: item.features ? item.features.join(', ') : ''
+      ...(activeTab === 'products' && item.features && { features: item.features.join(', ') })
     });
     setShowAddForm(true);
   };
 
   const handleUpdate = () => {
-    if (activeTab === 'products') {
-      setProducts(products.map(p => 
-        p.id === editingItem.id 
-          ? { ...formData, features: formData.features ? formData.features.split(',').map((f: string) => f.trim()) : [] }
-          : p
-      ));
-    } else {
-      setNews(news.map(n => n.id === editingItem.id ? formData : n));
-    }
+    const currentData = getDataByTab();
+    const updatedData = currentData.map((item: any) => 
+      item.id === editingItem.id 
+        ? { 
+            ...formData, 
+            ...(activeTab === 'products' && { features: formData.features ? formData.features.split(',').map((f: string) => f.trim()) : [] }),
+            ...(activeTab === 'pages' && { lastModified: new Date().toISOString().split('T')[0] })
+          }
+        : item
+    );
+    
+    setDataByTab(updatedData);
     setFormData({});
     setShowAddForm(false);
     setEditingItem(null);
+    
     toast({
       title: 'Data Diperbarui',
-      description: `${activeTab === 'products' ? 'Produk' : 'Berita'} berhasil diperbarui`,
+      description: `${getTabDisplayName()} berhasil diperbarui`,
     });
   };
 
   const handleDelete = (id: number) => {
-    if (activeTab === 'products') {
-      setProducts(products.filter(p => p.id !== id));
-    } else {
-      setNews(news.filter(n => n.id !== id));
-    }
+    const currentData = getDataByTab();
+    setDataByTab(currentData.filter((item: any) => item.id !== id));
+    
     toast({
       title: 'Data Dihapus',
-      description: `${activeTab === 'products' ? 'Produk' : 'Berita'} berhasil dihapus`,
+      description: `${getTabDisplayName()} berhasil dihapus`,
     });
+  };
+
+  const getTabDisplayName = () => {
+    const names: Record<string, string> = {
+      products: 'Produk',
+      news: 'Berita',
+      downloads: 'Download',
+      users: 'Pengguna',
+      messages: 'Pesan',
+      pages: 'Halaman'
+    };
+    return names[activeTab] || '';
+  };
+
+  const renderFormFields = () => {
+    switch (activeTab) {
+      case 'products':
+        return (
+          <>
+            <Input
+              placeholder="Nama Produk"
+              value={formData.name || ''}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Textarea
+              placeholder="Deskripsi Singkat"
+              value={formData.description || ''}
+              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+              rows={3}
+            />
+            <Textarea
+              placeholder="Deskripsi Lengkap"
+              value={formData.longDescription || ''}
+              onChange={(e) => setFormData({...formData, longDescription: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+              rows={6}
+            />
+            <Input
+              placeholder="Harga"
+              value={formData.price || ''}
+              onChange={(e) => setFormData({...formData, price: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Kategori"
+              value={formData.category || ''}
+              onChange={(e) => setFormData({...formData, category: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Website URL"
+              value={formData.website || ''}
+              onChange={(e) => setFormData({...formData, website: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Download URL"
+              value={formData.downloadUrl || ''}
+              onChange={(e) => setFormData({...formData, downloadUrl: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Fitur (pisahkan dengan koma)"
+              value={formData.features || ''}
+              onChange={(e) => setFormData({...formData, features: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+          </>
+        );
+
+      case 'news':
+        return (
+          <>
+            <Input
+              placeholder="Judul Berita"
+              value={formData.title || ''}
+              onChange={(e) => setFormData({...formData, title: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Textarea
+              placeholder="Konten Berita"
+              value={formData.content || ''}
+              onChange={(e) => setFormData({...formData, content: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+              rows={6}
+            />
+            <Input
+              placeholder="Penulis"
+              value={formData.author || ''}
+              onChange={(e) => setFormData({...formData, author: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <select
+              value={formData.status || 'Draft'}
+              onChange={(e) => setFormData({...formData, status: e.target.value})}
+              className="bg-white/10 border-white/20 text-white rounded-md p-2"
+            >
+              <option value="Draft">Draft</option>
+              <option value="Published">Published</option>
+            </select>
+          </>
+        );
+
+      case 'downloads':
+        return (
+          <>
+            <Input
+              placeholder="Nama File"
+              value={formData.name || ''}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Textarea
+              placeholder="Deskripsi"
+              value={formData.description || ''}
+              onChange={(e) => setFormData({...formData, description: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="URL File"
+              value={formData.fileUrl || ''}
+              onChange={(e) => setFormData({...formData, fileUrl: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Ukuran File"
+              value={formData.fileSize || ''}
+              onChange={(e) => setFormData({...formData, fileSize: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Versi"
+              value={formData.version || ''}
+              onChange={(e) => setFormData({...formData, version: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Kategori"
+              value={formData.category || ''}
+              onChange={(e) => setFormData({...formData, category: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+          </>
+        );
+
+      case 'users':
+        return (
+          <>
+            <Input
+              placeholder="Nama Lengkap"
+              value={formData.name || ''}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Email"
+              value={formData.email || ''}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <select
+              value={formData.role || 'User'}
+              onChange={(e) => setFormData({...formData, role: e.target.value})}
+              className="bg-white/10 border-white/20 text-white rounded-md p-2"
+            >
+              <option value="User">User</option>
+              <option value="Admin">Admin</option>
+              <option value="Moderator">Moderator</option>
+            </select>
+            <select
+              value={formData.status || 'Active'}
+              onChange={(e) => setFormData({...formData, status: e.target.value})}
+              className="bg-white/10 border-white/20 text-white rounded-md p-2"
+            >
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Suspended">Suspended</option>
+            </select>
+          </>
+        );
+
+      case 'pages':
+        return (
+          <>
+            <Input
+              placeholder="Judul Halaman"
+              value={formData.title || ''}
+              onChange={(e) => setFormData({...formData, title: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Slug (URL)"
+              value={formData.slug || ''}
+              onChange={(e) => setFormData({...formData, slug: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Textarea
+              placeholder="Konten Halaman"
+              value={formData.content || ''}
+              onChange={(e) => setFormData({...formData, content: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+              rows={6}
+            />
+            <select
+              value={formData.status || 'Draft'}
+              onChange={(e) => setFormData({...formData, status: e.target.value})}
+              className="bg-white/10 border-white/20 text-white rounded-md p-2"
+            >
+              <option value="Draft">Draft</option>
+              <option value="Published">Published</option>
+            </select>
+          </>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  const renderTableHeaders = () => {
+    switch (activeTab) {
+      case 'products':
+        return (
+          <>
+            <TableHead className="text-blue-100">Nama</TableHead>
+            <TableHead className="text-blue-100">Kategori</TableHead>
+            <TableHead className="text-blue-100">Harga</TableHead>
+            <TableHead className="text-blue-100">Website</TableHead>
+            <TableHead className="text-blue-100">Aksi</TableHead>
+          </>
+        );
+      case 'news':
+        return (
+          <>
+            <TableHead className="text-blue-100">Judul</TableHead>
+            <TableHead className="text-blue-100">Penulis</TableHead>
+            <TableHead className="text-blue-100">Status</TableHead>
+            <TableHead className="text-blue-100">Tanggal</TableHead>
+            <TableHead className="text-blue-100">Aksi</TableHead>
+          </>
+        );
+      case 'downloads':
+        return (
+          <>
+            <TableHead className="text-blue-100">Nama</TableHead>
+            <TableHead className="text-blue-100">Kategori</TableHead>
+            <TableHead className="text-blue-100">Versi</TableHead>
+            <TableHead className="text-blue-100">Ukuran</TableHead>
+            <TableHead className="text-blue-100">Aksi</TableHead>
+          </>
+        );
+      case 'users':
+        return (
+          <>
+            <TableHead className="text-blue-100">Nama</TableHead>
+            <TableHead className="text-blue-100">Email</TableHead>
+            <TableHead className="text-blue-100">Role</TableHead>
+            <TableHead className="text-blue-100">Status</TableHead>
+            <TableHead className="text-blue-100">Aksi</TableHead>
+          </>
+        );
+      case 'messages':
+        return (
+          <>
+            <TableHead className="text-blue-100">Nama</TableHead>
+            <TableHead className="text-blue-100">Email</TableHead>
+            <TableHead className="text-blue-100">Subject</TableHead>
+            <TableHead className="text-blue-100">Status</TableHead>
+            <TableHead className="text-blue-100">Aksi</TableHead>
+          </>
+        );
+      case 'pages':
+        return (
+          <>
+            <TableHead className="text-blue-100">Judul</TableHead>
+            <TableHead className="text-blue-100">Slug</TableHead>
+            <TableHead className="text-blue-100">Status</TableHead>
+            <TableHead className="text-blue-100">Terakhir Diubah</TableHead>
+            <TableHead className="text-blue-100">Aksi</TableHead>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const renderTableRow = (item: any) => {
+    switch (activeTab) {
+      case 'products':
+        return (
+          <>
+            <TableCell className="text-white">{item.name}</TableCell>
+            <TableCell className="text-white">{item.category}</TableCell>
+            <TableCell className="text-white">{item.price}</TableCell>
+            <TableCell className="text-blue-200">
+              <a href={item.website} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                {item.website}
+              </a>
+            </TableCell>
+          </>
+        );
+      case 'news':
+        return (
+          <>
+            <TableCell className="text-white">{item.title}</TableCell>
+            <TableCell className="text-white">{item.author}</TableCell>
+            <TableCell className="text-white">{item.status}</TableCell>
+            <TableCell className="text-white">{item.date}</TableCell>
+          </>
+        );
+      case 'downloads':
+        return (
+          <>
+            <TableCell className="text-white">{item.name}</TableCell>
+            <TableCell className="text-white">{item.category}</TableCell>
+            <TableCell className="text-white">{item.version}</TableCell>
+            <TableCell className="text-white">{item.fileSize}</TableCell>
+          </>
+        );
+      case 'users':
+        return (
+          <>
+            <TableCell className="text-white">{item.name}</TableCell>
+            <TableCell className="text-white">{item.email}</TableCell>
+            <TableCell className="text-white">{item.role}</TableCell>
+            <TableCell className="text-white">{item.status}</TableCell>
+          </>
+        );
+      case 'messages':
+        return (
+          <>
+            <TableCell className="text-white">{item.name}</TableCell>
+            <TableCell className="text-white">{item.email}</TableCell>
+            <TableCell className="text-white">{item.subject}</TableCell>
+            <TableCell className="text-white">{item.status}</TableCell>
+          </>
+        );
+      case 'pages':
+        return (
+          <>
+            <TableCell className="text-white">{item.title}</TableCell>
+            <TableCell className="text-white">{item.slug}</TableCell>
+            <TableCell className="text-white">{item.status}</TableCell>
+            <TableCell className="text-white">{item.lastModified}</TableCell>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const renderSettings = () => {
+    if (activeTab === 'website') {
+      return (
+        <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+          <CardHeader>
+            <CardTitle className="text-white">Pengaturan Website</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Input
+              placeholder="Nama Situs"
+              value={websiteSettings.siteName}
+              onChange={(e) => setWebsiteSettings({...websiteSettings, siteName: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Textarea
+              placeholder="Deskripsi Situs"
+              value={websiteSettings.siteDescription}
+              onChange={(e) => setWebsiteSettings({...websiteSettings, siteDescription: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Email Kontak"
+              value={websiteSettings.contactEmail}
+              onChange={(e) => setWebsiteSettings({...websiteSettings, contactEmail: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Input
+              placeholder="Telepon Kontak"
+              value={websiteSettings.contactPhone}
+              onChange={(e) => setWebsiteSettings({...websiteSettings, contactPhone: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Textarea
+              placeholder="Alamat"
+              value={websiteSettings.address}
+              onChange={(e) => setWebsiteSettings({...websiteSettings, address: e.target.value})}
+              className="bg-white/10 border-white/20 text-white placeholder-blue-200"
+            />
+            <Button className="bg-green-500 hover:bg-green-600">
+              Simpan Pengaturan Website
+            </Button>
+          </CardContent>
+        </Card>
+      );
+    }
+
+    if (activeTab === 'settings') {
+      return (
+        <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
+          <CardHeader>
+            <CardTitle className="text-white">Pengaturan Sistem</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center space-x-3">
+              <input
+                type="checkbox"
+                checked={generalSettings.maintenanceMode}
+                onChange={(e) => setGeneralSettings({...generalSettings, maintenanceMode: e.target.checked})}
+                className="w-4 h-4"
+              />
+              <label className="text-white">Mode Maintenance</label>
+            </div>
+            <div className="flex items-center space-x-3">
+              <input
+                type="checkbox"
+                checked={generalSettings.allowRegistration}
+                onChange={(e) => setGeneralSettings({...generalSettings, allowRegistration: e.target.checked})}
+                className="w-4 h-4"
+              />
+              <label className="text-white">Izinkan Registrasi</label>
+            </div>
+            <div className="flex items-center space-x-3">
+              <input
+                type="checkbox"
+                checked={generalSettings.emailNotifications}
+                onChange={(e) => setGeneralSettings({...generalSettings, emailNotifications: e.target.checked})}
+                className="w-4 h-4"
+              />
+              <label className="text-white">Notifikasi Email</label>
+            </div>
+            <select
+              value={generalSettings.backupFrequency}
+              onChange={(e) => setGeneralSettings({...generalSettings, backupFrequency: e.target.value})}
+              className="bg-white/10 border-white/20 text-white rounded-md p-2 w-full"
+            >
+              <option value="Daily">Harian</option>
+              <option value="Weekly">Mingguan</option>
+              <option value="Monthly">Bulanan</option>
+            </select>
+            <select
+              value={generalSettings.timezone}
+              onChange={(e) => setGeneralSettings({...generalSettings, timezone: e.target.value})}
+              className="bg-white/10 border-white/20 text-white rounded-md p-2 w-full"
+            >
+              <option value="Asia/Jakarta">Asia/Jakarta</option>
+              <option value="Asia/Surabaya">Asia/Surabaya</option>
+              <option value="Asia/Makassar">Asia/Makassar</option>
+            </select>
+            <Button className="bg-green-500 hover:bg-green-600">
+              Simpan Pengaturan Sistem
+            </Button>
+          </CardContent>
+        </Card>
+      );
+    }
+
+    return null;
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 flex">
-      {/* Sidebar */}
       <AdminSidebar />
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
         <div className="bg-white/10 backdrop-blur-sm border-b border-white/20 p-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-white">Dashboard Admin</h1>
@@ -173,7 +718,6 @@ const AdminDashboard = () => {
         </div>
 
         <div className="flex-1 p-6">
-          {/* Overview Cards */}
           {activeTab === 'overview' && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-white">
@@ -211,35 +755,12 @@ const AdminDashboard = () => {
             </div>
           )}
 
-          {/* Navigation Tabs */}
-          <div className="flex space-x-4 mb-6">
-            <Button
-              onClick={() => setActiveTab('overview')}
-              className={activeTab === 'overview' ? 'bg-orange-500 hover:bg-orange-600' : 'bg-white/10 hover:bg-white/20'}
-            >
-              <BarChart3 className="h-4 w-4 mr-2" />
-              Overview
-            </Button>
-            <Button
-              onClick={() => setActiveTab('products')}
-              className={activeTab === 'products' ? 'bg-orange-500 hover:bg-orange-600' : 'bg-white/10 hover:bg-white/20'}
-            >
-              <Package className="h-4 w-4 mr-2" />
-              Produk
-            </Button>
-            <Button
-              onClick={() => setActiveTab('news')}
-              className={activeTab === 'news' ? 'bg-orange-500 hover:bg-orange-600' : 'bg-white/10 hover:bg-white/20'}
-            >
-              <Newspaper className="h-4 w-4 mr-2" />
-              Berita
-            </Button>
-          </div>
+          {/* Settings */}
+          {(activeTab === 'website' || activeTab === 'settings') && renderSettings()}
 
-          {/* Content based on active tab */}
-          {(activeTab === 'products' || activeTab === 'news') && (
+          {/* CRUD Content */}
+          {['products', 'news', 'downloads', 'users', 'messages', 'pages'].includes(activeTab) && (
             <>
-              {/* Add Button */}
               <div className="mb-6">
                 <Button
                   onClick={() => {
@@ -250,98 +771,22 @@ const AdminDashboard = () => {
                   className="bg-green-500 hover:bg-green-600 text-white"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Tambah {activeTab === 'products' ? 'Produk' : 'Berita'}
+                  Tambah {getTabDisplayName()}
                 </Button>
               </div>
 
-              {/* Add/Edit Form */}
               {showAddForm && (
                 <Card className="mb-8 bg-white/10 backdrop-blur-sm border-white/20 text-white">
                   <CardHeader>
                     <CardTitle className="text-white">
-                      {editingItem ? 'Edit' : 'Tambah'} {activeTab === 'products' ? 'Produk' : 'Berita'}
+                      {editingItem ? 'Edit' : 'Tambah'} {getTabDisplayName()}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {activeTab === 'products' ? (
-                      <>
-                        <Input
-                          placeholder="Nama Produk"
-                          value={formData.name || ''}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                        <Textarea
-                          placeholder="Deskripsi Singkat"
-                          value={formData.description || ''}
-                          onChange={(e) => setFormData({...formData, description: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                          rows={3}
-                        />
-                        <Textarea
-                          placeholder="Deskripsi Lengkap"
-                          value={formData.longDescription || ''}
-                          onChange={(e) => setFormData({...formData, longDescription: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                          rows={6}
-                        />
-                        <Input
-                          placeholder="Harga"
-                          value={formData.price || ''}
-                          onChange={(e) => setFormData({...formData, price: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                        <Input
-                          placeholder="Kategori"
-                          value={formData.category || ''}
-                          onChange={(e) => setFormData({...formData, category: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                        <Input
-                          placeholder="Website URL"
-                          value={formData.website || ''}
-                          onChange={(e) => setFormData({...formData, website: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                        <Input
-                          placeholder="Download URL"
-                          value={formData.downloadUrl || ''}
-                          onChange={(e) => setFormData({...formData, downloadUrl: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                        <Input
-                          placeholder="Fitur (pisahkan dengan koma)"
-                          value={formData.features || ''}
-                          onChange={(e) => setFormData({...formData, features: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <Input
-                          placeholder="Judul Berita"
-                          value={formData.title || ''}
-                          onChange={(e) => setFormData({...formData, title: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                        <Textarea
-                          placeholder="Konten Berita"
-                          value={formData.content || ''}
-                          onChange={(e) => setFormData({...formData, content: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                          rows={6}
-                        />
-                        <Input
-                          placeholder="Penulis"
-                          value={formData.author || ''}
-                          onChange={(e) => setFormData({...formData, author: e.target.value})}
-                          className="bg-white/10 border-white/20 text-white placeholder-blue-200"
-                        />
-                      </>
-                    )}
+                    {renderFormFields()}
                     <div className="flex space-x-4">
                       <Button
-                        onClick={editingItem ? handleUpdate : (activeTab === 'products' ? handleAddProduct : handleAddNews)}
+                        onClick={editingItem ? handleUpdate : handleAdd}
                         className="bg-green-500 hover:bg-green-600"
                       >
                         {editingItem ? 'Update' : 'Simpan'}
@@ -362,56 +807,23 @@ const AdminDashboard = () => {
                 </Card>
               )}
 
-              {/* Data Table */}
               <Card className="bg-white/10 backdrop-blur-sm border-white/20">
                 <CardHeader>
                   <CardTitle className="text-white">
-                    Daftar {activeTab === 'products' ? 'Produk' : 'Berita'}
+                    Daftar {getTabDisplayName()}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        {activeTab === 'products' ? (
-                          <>
-                            <TableHead className="text-blue-100">Nama</TableHead>
-                            <TableHead className="text-blue-100">Kategori</TableHead>
-                            <TableHead className="text-blue-100">Harga</TableHead>
-                            <TableHead className="text-blue-100">Website</TableHead>
-                            <TableHead className="text-blue-100">Aksi</TableHead>
-                          </>
-                        ) : (
-                          <>
-                            <TableHead className="text-blue-100">Judul</TableHead>
-                            <TableHead className="text-blue-100">Penulis</TableHead>
-                            <TableHead className="text-blue-100">Tanggal</TableHead>
-                            <TableHead className="text-blue-100">Aksi</TableHead>
-                          </>
-                        )}
+                        {renderTableHeaders()}
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {(activeTab === 'products' ? products : news).map((item) => (
+                      {getDataByTab().map((item: any) => (
                         <TableRow key={item.id}>
-                          {activeTab === 'products' ? (
-                            <>
-                              <TableCell className="text-white">{item.name}</TableCell>
-                              <TableCell className="text-white">{item.category}</TableCell>
-                              <TableCell className="text-white">{item.price}</TableCell>
-                              <TableCell className="text-blue-200">
-                                <a href={item.website} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                                  {item.website}
-                                </a>
-                              </TableCell>
-                            </>
-                          ) : (
-                            <>
-                              <TableCell className="text-white">{item.title}</TableCell>
-                              <TableCell className="text-white">{item.author}</TableCell>
-                              <TableCell className="text-white">{item.date}</TableCell>
-                            </>
-                          )}
+                          {renderTableRow(item)}
                           <TableCell>
                             <div className="flex space-x-2">
                               <Button
