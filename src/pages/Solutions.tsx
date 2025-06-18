@@ -1,286 +1,308 @@
-import Layout from "../components/Layout";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  Building2,
-  Users,
-  Smartphone,
-  Shield,
-  Cloud,
-  Factory,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+
+import React from 'react';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'moment/locale/id';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+// Set locale to Indonesian
+moment.locale('id');
+const localizer = momentLocalizer(moment);
 
 const Solutions = () => {
-  const solutions = [
+  const events = [
     {
-      icon: Building2,
-      title: "Solusi Enterprise",
-      description:
-        "Perlindungan komprehensif untuk perusahaan besar dengan infrastruktur IT kompleks",
-      features: [
-        "Endpoint Detection & Response (EDR)",
-        "Network Security Monitoring",
-        "Threat Intelligence",
-        "24/7 SOC Support",
-        "Compliance Management",
-      ],
-      industries: ["Perbankan", "Telekomunikasi", "Pemerintahan"],
-      gradient: "from-blue-500 to-blue-700",
+      id: 1,
+      title: 'Workshop Cybersecurity 2024',
+      start: new Date(2024, 1, 15, 9, 0), // February 15, 2024, 9:00 AM
+      end: new Date(2024, 1, 15, 17, 0),   // February 15, 2024, 5:00 PM
+      resource: {
+        type: 'Workshop',
+        location: 'Ruang Seminar A',
+        department: 'IT',
+        participants: 50,
+        status: 'approved'
+      }
     },
     {
-      icon: Users,
-      title: "Solusi UKM",
-      description: "Paket keamanan terjangkau untuk usaha kecil dan menengah",
-      features: [
-        "Antivirus & Anti-malware",
-        "Firewall Sederhana",
-        "Email Protection",
-        "Data Backup",
-        "Remote Support",
-      ],
-      industries: ["Retail", "Restoran", "Jasa Profesional"],
-      gradient: "from-green-500 to-green-700",
+      id: 2,
+      title: 'Team Building Engineering',
+      start: new Date(2024, 1, 20, 8, 0),  // February 20, 2024, 8:00 AM
+      end: new Date(2024, 1, 21, 18, 0),   // February 21, 2024, 6:00 PM
+      resource: {
+        type: 'Team Building',
+        location: 'Villa Puncak, Bogor',
+        department: 'Engineering',
+        participants: 30,
+        status: 'approved'
+      }
     },
     {
-      icon: Smartphone,
-      title: "Solusi Mobile",
-      description: "Keamanan khusus untuk perangkat mobile dan aplikasi",
-      features: [
-        "Mobile Device Management",
-        "App Security Testing",
-        "Mobile VPN",
-        "Anti-theft Protection",
-        "Secure Communication",
-      ],
-      industries: ["Startup", "Digital Agency", "E-commerce"],
-      gradient: "from-purple-500 to-purple-700",
+      id: 3,
+      title: 'Seminar Digital Marketing',
+      start: new Date(2024, 1, 10, 13, 0), // February 10, 2024, 1:00 PM
+      end: new Date(2024, 1, 10, 16, 0),   // February 10, 2024, 4:00 PM
+      resource: {
+        type: 'Seminar',
+        location: 'Auditorium',
+        department: 'Marketing',
+        participants: 100,
+        status: 'scheduled'
+      }
     },
     {
-      icon: Shield,
-      title: "Solusi Personal",
-      description:
-        "Perlindungan komprehensif untuk pengguna individu dan keluarga",
-      features: [
-        "Multi-device Protection",
-        "Parental Controls",
-        "Identity Protection",
-        "Secure Password Manager",
-        "Privacy Tools",
-      ],
-      industries: ["Rumah Tangga", "Freelancer", "Pelajar"],
-      gradient: "from-orange-500 to-orange-700",
+      id: 4,
+      title: 'Pelatihan Project Management',
+      start: new Date(2024, 1, 25, 9, 0),  // February 25, 2024, 9:00 AM
+      end: new Date(2024, 1, 25, 16, 0),   // February 25, 2024, 4:00 PM
+      resource: {
+        type: 'Pelatihan',
+        location: 'Ruang Training B',
+        department: 'HR',
+        participants: 25,
+        status: 'approved'
+      }
     },
     {
-      icon: Cloud,
-      title: "Solusi Cloud",
-      description: "Keamanan untuk infrastruktur cloud dan layanan SaaS",
-      features: [
-        "Cloud Security Posture Management",
-        "API Security",
-        "Container Security",
-        "Multi-cloud Monitoring",
-        "Compliance Automation",
-      ],
-      industries: ["Tech Startup", "SaaS Provider", "Cloud Migration"],
-      gradient: "from-cyan-500 to-cyan-700",
-    },
-    {
-      icon: Factory,
-      title: "Solusi Industrial",
-      description: "Keamanan khusus untuk sistem industri dan IoT",
-      features: [
-        "OT Security Monitoring",
-        "IoT Device Protection",
-        "Industrial Firewall",
-        "SCADA Security",
-        "Critical Infrastructure Protection",
-      ],
-      industries: ["Manufaktur", "Energi", "Transportasi"],
-      gradient: "from-red-500 to-red-700",
-    },
+      id: 5,
+      title: 'Konferensi Teknologi 2024',
+      start: new Date(2024, 2, 1, 8, 0),   // March 1, 2024, 8:00 AM
+      end: new Date(2024, 2, 2, 17, 0),    // March 2, 2024, 5:00 PM
+      resource: {
+        type: 'Konferensi',
+        location: 'Jakarta Convention Center',
+        department: 'IT',
+        participants: 500,
+        status: 'scheduled'
+      }
+    }
   ];
 
+  const eventStyleGetter = (event: any) => {
+    let backgroundColor = '#3174ad';
+    
+    switch (event.resource.status) {
+      case 'approved':
+        backgroundColor = '#10b981'; // green
+        break;
+      case 'scheduled':
+        backgroundColor = '#3b82f6'; // blue
+        break;
+      case 'pending':
+        backgroundColor = '#f59e0b'; // yellow
+        break;
+      default:
+        backgroundColor = '#6b7280'; // gray
+    }
+
+    return {
+      style: {
+        backgroundColor,
+        borderRadius: '5px',
+        opacity: 0.8,
+        color: 'white',
+        border: '0px',
+        display: 'block'
+      }
+    };
+  };
+
+  const [selectedEvent, setSelectedEvent] = React.useState<any>(null);
+
   return (
-    <Layout showHero={true}>
-      <div className="h-12" />
-      <div className="min-h-screen text-white">
-        {/* Hero Section */}
-        <div className="bg-white/10 backdrop-blur-sm text-white py-16">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Solusi Keamanan untuk Setiap Kebutuhan
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      <Header />
+      
+      <main className="pt-20 pb-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Calendar Event & Kegiatan
             </h1>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Dari perusahaan multinasional hingga pengguna personal, kami
-              memiliki solusi keamanan siber yang tepat untuk setiap skala
-              bisnis
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Tampilan calendar untuk semua event yang telah disetujui dan terjadwal
             </p>
           </div>
-        </div>
 
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          {/* Solutions Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {solutions.map((solution, index) => {
-              const IconComponent = solution.icon;
-              return (
-                <Card
-                  key={index}
-                  className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 group overflow-hidden text-white"
-                >
-                  <div
-                    className={`h-2 bg-gradient-to-r ${solution.gradient}`}
-                  ></div>
-                  <CardHeader className="text-center">
-                    <div
-                      className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${solution.gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`}
-                    >
-                      <IconComponent className="h-8 w-8 text-white" />
-                    </div>
-                    <CardTitle className="text-xl mb-2 text-white">
-                      {solution.title}
-                    </CardTitle>
-                    <CardDescription className="text-blue-100">
-                      {solution.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-white mb-3">
-                        Fitur Utama:
-                      </h4>
-                      <ul className="space-y-2">
-                        {solution.features.map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className="flex items-center text-sm text-blue-100"
-                          >
-                            <div className="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-white mb-3">
-                        Cocok untuk:
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {solution.industries.map((industry, industryIndex) => (
-                          <span
-                            key={industryIndex}
-                            className="px-2 py-1 bg-white/10 text-blue-100 text-xs rounded-full"
-                          >
-                            {industry}
+          {/* Legend */}
+          <div className="flex justify-center mb-8">
+            <div className="flex space-x-4 bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-green-500 rounded mr-2"></div>
+                <span className="text-sm">Disetujui</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-blue-500 rounded mr-2"></div>
+                <span className="text-sm">Terjadwal</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-4 h-4 bg-yellow-500 rounded mr-2"></div>
+                <span className="text-sm">Pending</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Calendar */}
+            <div className="lg:col-span-2">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Calendar Event</CardTitle>
+                  <CardDescription>
+                    Klik pada event untuk melihat detail
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div style={{ height: '600px' }}>
+                    <Calendar
+                      localizer={localizer}
+                      events={events}
+                      startAccessor="start"
+                      endAccessor="end"
+                      style={{ height: '100%' }}
+                      eventPropGetter={eventStyleGetter}
+                      onSelectEvent={(event) => setSelectedEvent(event)}
+                      messages={{
+                        next: 'Berikutnya',
+                        previous: 'Sebelumnya',
+                        today: 'Hari Ini',
+                        month: 'Bulan',
+                        week: 'Minggu',
+                        day: 'Hari',
+                        agenda: 'Agenda',
+                        date: 'Tanggal',
+                        time: 'Waktu',
+                        event: 'Event',
+                        noEventsInRange: 'Tidak ada event pada periode ini',
+                        showMore: (total) => `+${total} lainnya`
+                      }}
+                      formats={{
+                        monthHeaderFormat: 'MMMM YYYY',
+                        dayHeaderFormat: 'dddd, DD MMMM',
+                        dayRangeHeaderFormat: ({ start, end }) =>
+                          `${moment(start).format('DD MMMM')} - ${moment(end).format('DD MMMM YYYY')}`
+                      }}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Event Detail */}
+            <div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Detail Event</CardTitle>
+                  <CardDescription>
+                    {selectedEvent ? 'Informasi event yang dipilih' : 'Pilih event dari calendar'}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {selectedEvent ? (
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-lg font-semibold">{selectedEvent.title}</h3>
+                        <Badge className={
+                          selectedEvent.resource.status === 'approved' 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-blue-100 text-blue-800'
+                        }>
+                          {selectedEvent.resource.status === 'approved' ? 'Disetujui' : 'Terjadwal'}
+                        </Badge>
+                      </div>
+
+                      <div className="space-y-2 text-sm">
+                        <div>
+                          <span className="font-medium">Jenis:</span>
+                          <span className="ml-2">{selectedEvent.resource.type}</span>
+                        </div>
+                        
+                        <div>
+                          <span className="font-medium">Tanggal:</span>
+                          <span className="ml-2">
+                            {moment(selectedEvent.start).format('DD MMMM YYYY')}
+                            {moment(selectedEvent.start).format('DD/MM/YYYY') !== moment(selectedEvent.end).format('DD/MM/YYYY') && 
+                              ` - ${moment(selectedEvent.end).format('DD MMMM YYYY')}`
+                            }
                           </span>
-                        ))}
+                        </div>
+                        
+                        <div>
+                          <span className="font-medium">Waktu:</span>
+                          <span className="ml-2">
+                            {moment(selectedEvent.start).format('HH:mm')} - {moment(selectedEvent.end).format('HH:mm')}
+                          </span>
+                        </div>
+                        
+                        <div>
+                          <span className="font-medium">Lokasi:</span>
+                          <span className="ml-2">{selectedEvent.resource.location}</span>
+                        </div>
+                        
+                        <div>
+                          <span className="font-medium">Departemen:</span>
+                          <span className="ml-2">{selectedEvent.resource.department}</span>
+                        </div>
+                        
+                        <div>
+                          <span className="font-medium">Peserta:</span>
+                          <span className="ml-2">{selectedEvent.resource.participants} orang</span>
+                        </div>
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <Link to="/contact">
-                        <Button
-                          className={`w-full bg-gradient-to-r ${solution.gradient} hover:opacity-90 text-white`}
-                        >
-                          Konsultasi Gratis
-                        </Button>
-                      </Link>
-                      <Link to="/products">
-                        <Button
-                          variant="outline"
-                          className="w-full border-white/20 text-black hover:bg-white/10"
-                        >
-                          Lihat Produk
-                        </Button>
-                      </Link>
+                  ) : (
+                    <div className="text-center text-gray-500 py-8">
+                      <p>Klik pada event di calendar untuk melihat detail</p>
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+                  )}
+                </CardContent>
+              </Card>
 
-          {/* Why Choose Our Solutions */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-lg mb-16 border border-white/20">
-            <h2 className="text-3xl font-bold text-center mb-12 text-white">
-              Mengapa Memilih Solusi CyberGuard?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-6 w-6 text-orange-400" />
-                </div>
-                <h3 className="font-semibold mb-2 text-white">
-                  Teknologi Terdepan
-                </h3>
-                <p className="text-sm text-blue-100">
-                  AI dan machine learning untuk deteksi ancaman real-time
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-6 w-6 text-green-400" />
-                </div>
-                <h3 className="font-semibold mb-2 text-white">Tim Ahli</h3>
-                <p className="text-sm text-blue-100">
-                  Tim security expert berpengalaman 24/7
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Building2 className="h-6 w-6 text-purple-400" />
-                </div>
-                <h3 className="font-semibold mb-2 text-white">Scalable</h3>
-                <p className="text-sm text-blue-100">
-                  Solusi yang dapat disesuaikan dengan pertumbuhan bisnis
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="w-12 h-12 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Cloud className="h-6 w-6 text-cyan-400" />
-                </div>
-                <h3 className="font-semibold mb-2 text-white">Cloud-Ready</h3>
-                <p className="text-sm text-blue-100">
-                  Kompatibel dengan semua platform cloud major
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center text-white border border-white/20">
-            <h2 className="text-3xl font-bold mb-4">
-              Siap Mengamankan Bisnis Anda?
-            </h2>
-            <p className="text-lg opacity-90 mb-6">
-              Konsultasi gratis dengan security expert kami untuk menemukan
-              solusi yang tepat
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3">
-                  Mulai Konsultasi
-                </Button>
-              </Link>
-              <Link to="/download">
-                <Button
-                  variant="outline"
-                  className="border-white/20 text-black hover:bg-white/10 px-8 py-3"
-                >
-                  Download Trial
-                </Button>
-              </Link>
+              {/* Upcoming Events */}
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle>Event Mendatang</CardTitle>
+                  <CardDescription>
+                    Event dalam 30 hari ke depan
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {events
+                      .filter(event => moment(event.start).isAfter(moment()) && moment(event.start).isBefore(moment().add(30, 'days')))
+                      .sort((a, b) => moment(a.start).diff(moment(b.start)))
+                      .slice(0, 5)
+                      .map(event => (
+                        <div key={event.id} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                          <div>
+                            <p className="font-medium text-sm">{event.title}</p>
+                            <p className="text-xs text-gray-600">
+                              {moment(event.start).format('DD MMM, HH:mm')}
+                            </p>
+                          </div>
+                          <Badge size="sm" className={
+                            event.resource.status === 'approved' 
+                              ? 'bg-green-100 text-green-800' 
+                              : 'bg-blue-100 text-blue-800'
+                          }>
+                            {event.resource.status === 'approved' ? 'Disetujui' : 'Terjadwal'}
+                          </Badge>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
-      </div>
-    </Layout>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
